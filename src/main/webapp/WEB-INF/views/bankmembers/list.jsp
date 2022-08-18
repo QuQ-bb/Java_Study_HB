@@ -17,17 +17,16 @@
 			<th>EMAIL</th>
 			<th>PHONE</th>
 		</tr>
-		<tr>
 			<c:forEach items="${search}" var="search">
+		<tr>
 				<td>${search.userName}</td>
 				<td>${search.name}</td>
 				<td>${search.email}</td>
 				<td>${search.phone}</td>
-			</c:forEach>
-		
 		</tr>
-	
+			</c:forEach>
 	</table>
+	<a href="/searchID.ms">Back Search</a>
 
 </body>
 </html>

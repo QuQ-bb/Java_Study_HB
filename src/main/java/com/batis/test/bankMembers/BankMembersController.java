@@ -1,6 +1,6 @@
 package com.batis.test.bankMembers;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,9 +52,9 @@ public class BankMembersController {
 	public ModelAndView searchID(String search)throws Exception{
 		System.out.println("searchID post 실행");
 		ModelAndView mv = new ModelAndView();
-		ArrayList<BankMembersDTO> al = (ArrayList<BankMembersDTO>)bankMembersService.searchID(search);
+		List<BankMembersDTO> al = bankMembersService.searchID(search);
 		
-		mv.setViewName("list.ms");
+		mv.setViewName("/bankmembers/list");
 		mv.addObject("search", al);
 
 		return mv;
