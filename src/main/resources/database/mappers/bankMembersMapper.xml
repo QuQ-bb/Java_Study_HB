@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+<mapper namespace="com.batis.test.bankMembers.BankMembersDAO">
+
+<insert id="join" parameterType="com.batis.test.bankMembers.BankMembersDTO">
+INSERT INTO BANKMEMBERS
+VALUES(
+	#{userName},
+	#{password},
+	#{name},
+	#{email},
+	#{phone}
+)
+</insert>
+<select id="login" parameterType="BankMembersDTO" resultType="BankMembersDTO">
+SELECT * 
+FROM BANKMEMBERS
+WHERE USERNAME=#{userName} and PASSWORD=#{password}
+</select>
+<select id="searchID" parameterType="String" resultType="BankMembersDTO">
+SELECT *
+FROM BANKMEMBERS
+WHERE USERNAME LIKE '%'||#{search}||'%' 
+
+</select>
+
+</mapper>		    
