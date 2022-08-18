@@ -19,7 +19,7 @@
 		<tbody>
 			<tr>
 				<th>${requestScope.bankBook.bookNum}</th>
-				<th><input type="text" value="${requestScope.bankBook.bookName}" name="bookName"></th>
+				<th><input type="text" name="bookName" value="${requestScope.bankBook.bookName}"></th>
 				<th>${requestScope.bankBook.bookRate}</th>
 			</tr>
 			</tbody>

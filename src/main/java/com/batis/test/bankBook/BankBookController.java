@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,11 +27,12 @@ public class BankBookController {
 	}
 	
 	@RequestMapping(value = "detail.ms", method = RequestMethod.GET)
-	public void detail(HttpServletRequest request,BankBookDTO dto) {
+	public void detail(Model model,BankBookDTO dto) {
 		System.out.println("detail Controller");
+		
+		dto = service.getDetail(dto);
 		System.out.println(dto.getBookNum());
-		BankBookDTO dtobb = service.getDetail(dto);
-		request.setAttribute("bankBook", dtobb);
+		model.addAttribute("bankBook", dto);
 	}
 	
 	@RequestMapping(value = "add.ms", method = RequestMethod.GET)
@@ -54,8 +56,14 @@ public class BankBookController {
 	}
 	
 	@RequestMapping(value = "update.ms", method = RequestMethod.GET)
-	public void update() {
+	public void update(HttpServletRequest request) {
 		System.out.println("상풍 update 페이지");
+		
+		BankBookDTO dto = new BankBookDTO();
+		dto.setBookNum(Long.parseLong(request.getParameter("bookNum")));
+		
+		dto = service.getDetail(dto);
+		request.setAttribute("bankBook", dto);
 	}
 	
 	@RequestMapping(value = "update.ms", method = RequestMethod.POST)
