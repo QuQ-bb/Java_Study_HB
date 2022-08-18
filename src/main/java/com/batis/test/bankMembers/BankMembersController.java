@@ -2,6 +2,8 @@ package com.batis.test.bankMembers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,13 +35,10 @@ public class BankMembersController {
 		System.out.println("LOGIN GET 실행");
 	}
 	@RequestMapping(value="login.ms",method=RequestMethod.POST)
-	public String login(BankMembersDTO bankMembersDTO)throws Exception{
+	public String login(BankMembersDTO bankMembersDTO,HttpSession session)throws Exception{
 		System.out.println("LOGIN POST 실행");
 		bankMembersDTO =  bankMembersService.login(bankMembersDTO);
-		System.out.println(bankMembersDTO.getUserName());
-		System.out.println(bankMembersDTO.getName());
-		System.out.println(bankMembersDTO.getEmail());
-		System.out.println(bankMembersDTO.getPhone());
+		session.setAttribute("member", bankMembersDTO);
 		
 		return "redirect:/";
 	}
@@ -58,7 +57,11 @@ public class BankMembersController {
 		mv.addObject("search", al);
 
 		return mv;
-		
+	}
+	//로그아웃
+	@RequestMapping(value="logout.ms")
+	public void logout(HttpSession session)throws Exception{
+		session.invalidate();
 	}
 
 }

@@ -6,10 +6,15 @@
 	<title>Home</title>
 </head>
 <body>
+<c:if test="${member.userName eq null }">
+<a href="/bankmembers/join.ms">회원가입</a><br>
+<a href="/bankmembers/login.ms">로그인</a><br>
+</c:if>
 
-<a href="/bankmembers/join.ms">회원가입</a>
-<a href="/bankmembers/login.ms">로그인</a>
-<a href="/bankmembers/searchID.ms">아이디 찾기</a>
+<c:if test="${member.userName ne null }">
+<a href="/bankmembers/logout.ms">로그아웃</a><br>
+<a href="/bankmembers/searchID.ms">아이디 찾기</a><br>
+</c:if>
 
 </body>
 </html>
