@@ -74,6 +74,16 @@ public class BankBookController {
 		return "redirect:./list.ms";
 	}
 	
+	@RequestMapping(value="delete.ms", method= RequestMethod.GET)
+	public String delete(BankBookDTO dto) {
+		System.out.println("상품 삭제 method");
+		
+		int chk = service.delete(dto);
+		
+		System.out.println(chk +" : 1이면 성공");
+		return "redirect:./list.ms";
+	}
+	
 	
 	
 }

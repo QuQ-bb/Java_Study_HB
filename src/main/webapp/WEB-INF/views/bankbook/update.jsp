@@ -20,10 +20,13 @@
 			<tr>
 				<th>${requestScope.bankBook.bookNum}</th>
 				<th><input type="text" name="bookName" value="${requestScope.bankBook.bookName}"></th>
-				<th>${requestScope.bankBook.bookRate}</th>
+				<th><input type="text" name="bookRate" value="${requestScope.bankBook.bookRate}"></th>
 			</tr>
 			</tbody>
 			</table>
+			<input type="hidden" name="bookNum" value="${requestScope.bankBook.bookNum}">
+			<input type="hidden" name="bookSale" value="${requestScope.bankBook.bookSale}">
+			<input type="submit">
 </form>
 </body>
 </html>

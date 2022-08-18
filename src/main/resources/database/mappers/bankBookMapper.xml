@@ -18,5 +18,8 @@
 	<update id="update" parameterType="com.batis.test.bankBook.BankBookDTO">
 		UPDATE BANKBOOK SET BOOKNAME=#{bookName}, BOOKRATE=#{bookRate} WHERE BOOKNUM=#{bookNum}
 	</update>
+	<delete id="delete" parameterType="com.batis.test.bankBook.BankBookDTO">
+		DELETE BANKBOOK WHERE BOOKNUM=#{bookNum}
+	</delete>
 
 </mapper>	
