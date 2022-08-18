@@ -9,7 +9,7 @@ public class BankAccountDAO {
 	
 	@Autowired
 	private SqlSession session;
-	private final String NAMESPACE = "com.batis.test.bankAccount.";
+	private final String NAMESPACE = "com.batis.test.bankAccount.BankAccountDAO.";
 	
 	public int addAccount(BankAccountDTO dto) {
 		return session.insert(NAMESPACE+"add", dto);
