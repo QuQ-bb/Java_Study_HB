@@ -11,8 +11,8 @@
 <body>
 	<h1>BankBook Detail</h1>
 	<hr>
-	<a href="#">상품수정</a>
-	<a href="#">상품가입</a>
+	<a href="./update.ms?bookNum=${bankBook.bookNum }#">상품수정</a>
+	<a href="../account/add.ms?bookNum=${bankBook.bookNum }">상품가입</a>
 	<table border="1">
 		<thead>
 			<tr>
@@ -21,16 +21,16 @@
 		</thead>
 		<tbody>
 			<tr>
-				<th>${requestScope.bankBook.bookNum}</th>
-				<th>${requestScope.bankBook.bookName}</th>
-				<th>${requestScope.bankBook.bookRate}</th>
-				<th>
+				<td>${requestScope.bankBook.bookNum}</td>
+				<td>${requestScope.bankBook.bookName}</td>
+				<td>${requestScope.bankBook.bookRate}</td>
+				<td>
 				<c:if test="${bankBook.bookSale eq 1}">판매 중</c:if>
 				<c:if test="${bankBook.bookSale ne 1}">판매 금지</c:if>
-				</th>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-
+	<a href="./delete.ms?bookNum=${bankBook.bookNum }#">상품삭제</a>
 </body>
 </html>

@@ -22,11 +22,15 @@ public class BankBookDAO {
 	}
 	
 	public BankBookDTO getDetail(BankBookDTO dto) {
-		return session.selectOne(NAMESPACE+"getDetail");
+		return session.selectOne(NAMESPACE+"getDetail", dto);
 	}
 	
 	public int update(BankBookDTO dto) {
 		return session.update(NAMESPACE+"update", dto);
+	}
+	
+	public int delete(BankBookDTO dto) {
+		return session.delete(NAMESPACE+"delete", dto);
 	}
 	
 

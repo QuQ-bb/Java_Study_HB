@@ -26,4 +26,8 @@ public class BankBookService {
 	public int update(BankBookDTO dto) {
 		return dao.update(dto);
 	}
+	
+	public int delete(BankBookDTO dto) {
+		return dao.delete(dto);
+	}
 }
