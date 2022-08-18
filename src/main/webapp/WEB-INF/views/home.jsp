@@ -12,6 +12,7 @@
 </c:if>
 
 <c:if test="${member.userName ne null }">
+<a href="/bankbook/list.ms">상품리스트 확인</a><br>
 <a href="/bankmembers/logout.ms">로그아웃</a><br>
 <a href="/bankmembers/searchID.ms">아이디 찾기</a><br>
 </c:if>
