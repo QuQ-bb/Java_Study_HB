@@ -60,8 +60,10 @@ public class BankMembersController {
 	}
 	//로그아웃
 	@RequestMapping(value="logout.ms")
-	public void logout(HttpSession session)throws Exception{
+	public String logout(HttpSession session)throws Exception{
 		session.invalidate();
+		
+		return "redirect:/";
 	}
 
 }
