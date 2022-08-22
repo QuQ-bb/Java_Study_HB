@@ -1,11 +1,18 @@
 package com.batis.test.bankBook;
 
+import java.util.List;
+
+import com.batis.test.bankAccount.BankAccountDTO;
+
 public class BankBookDTO {
 	
 	private Long bookNum;
 	private String bookName;
 	private Double bookRate;
 	private Integer bookSale;
+	
+	//1 : N의 관계일 때
+	private List<BankAccountDTO> bankAccountDTOs;
 	
 
 	public Long getBookNum() {

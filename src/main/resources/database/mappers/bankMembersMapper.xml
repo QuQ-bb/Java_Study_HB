@@ -27,4 +27,32 @@ WHERE USERNAME LIKE '%'||#{search}||'%'
 
 </select>
 
+<select id="mypage" parameterType="BankMembersDTO" resultMap="mypageResult">
+SELECT M.USERNAME,M.NAME,M.EMAIL,M.PHONE,A.ACCOUNTNUM,B.BOOKNAME,A.ACCOUNTDATE
+FROM BANKMEMBERS M
+	JOIN
+	 BANKACCOUNT A
+	 ON M.USERNAME = A.USERNAME
+	JOIN
+	BANKBOOK B
+	ON A.BOOKNUM = B.BOOKNUM 
+WHERE M.USERNAME = #{userName}
+</select>
+
+	<!-- 1 : N 일 때 collection 사용  -->
+<resultMap type="BankMembersDTO" id="mypageResult">
+	<id column="USERNAME" property="userName"/>
+	<result column="NAME" property="name" />
+	<result column="EMAIL" property="email"/>
+	<result column="PHONE" property="phone"/>
+	<collection property="bankAccountDTOs" javaType="List" ofType="BankAccountDTO">
+		<id column="ACCOUNTNUM" property="AccountNum"/>
+		<result column="ACCOUNTDATE" property="AccountDate"/>
+		
+			<association property="bankBookDTO" javaType="BankBookDTO">
+				<result column="BOOKNAME" property="bookName"/>
+			</association>
+	</collection>
+</resultMap>
+
 </mapper>		    

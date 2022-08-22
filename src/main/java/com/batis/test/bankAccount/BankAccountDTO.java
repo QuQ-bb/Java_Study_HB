@@ -2,17 +2,22 @@ package com.batis.test.bankAccount;
 
 import java.sql.Date;
 
+import com.batis.test.bankBook.BankBookDTO;
+
 public class BankAccountDTO {
-	private Integer AccountNum;
+	private Long AccountNum;
 	private String UserName;
 	private Long BookNum;
 	private Date AccountDate;
 	
+	// 1 : 1의 관계일 때
+	private BankBookDTO bankBookDTO;
 	
-	public Integer getAccountNum() {
+	
+	public Long getAccountNum() {
 		return AccountNum;
 	}
-	public void setAccountNum(Integer accountNum) {
+	public void setAccountNum(Long accountNum) {
 		AccountNum = accountNum;
 	}
 	public String getUserName() {
@@ -32,6 +37,13 @@ public class BankAccountDTO {
 	}
 	public void setAccountDate(Date accountDate) {
 		AccountDate = accountDate;
+	}
+	
+	public BankBookDTO getBankBookDTO() {
+		return bankBookDTO;
+	}
+	public void setBankBookDTO(BankBookDTO bankBookDTO) {
+		this.bankBookDTO = bankBookDTO;
 	}
 	
 	

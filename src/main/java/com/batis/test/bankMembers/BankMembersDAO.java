@@ -25,4 +25,8 @@ public class BankMembersDAO {
 	public List<BankMembersDTO> searchID(String search)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"searchID", search);
 	}
+	//mypage
+	public BankMembersDTO mypage(BankMembersDTO bankMembersDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"mypage",bankMembersDTO);
+	}
 }

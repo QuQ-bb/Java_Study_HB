@@ -16,6 +16,8 @@ public class BankMembersController {
 	
 	@Autowired
 	private BankMembersService bankMembersService;
+//	@Autowired
+//	private BankAccountService bankAccountService;
 	
 	//회원가입
 	@RequestMapping(value="join.ms",method=RequestMethod.GET)
@@ -65,5 +67,24 @@ public class BankMembersController {
 		
 		return "redirect:/";
 	}
+	//MYPAGE
+	@RequestMapping(value="mypage.ms", method=RequestMethod.GET)
+	public ModelAndView mypage(HttpSession session)throws Exception{
+		System.out.println("mypage 실행");
+		ModelAndView mv = new ModelAndView();
+		BankMembersDTO bankMembersDTO = (BankMembersDTO)session.getAttribute("member");
+//		Map<String, Object> map = bankMembersService.mypage(bankMembersDTO);
+//		mv.addObject("map", map);
+		
+		bankMembersDTO = bankMembersService.mypage(bankMembersDTO);
+//		List<BankAccountDTO> al = bankAccountService.myAccount(bankMembersDTO);
+//		mv.addObject("list", al);
+		mv.addObject("dto", bankMembersDTO);
+		mv.setViewName("bankmembers/mypage");
+		
+		return mv;
+		
+	}
+	
 
 }

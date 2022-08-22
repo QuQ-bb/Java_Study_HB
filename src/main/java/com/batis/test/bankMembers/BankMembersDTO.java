@@ -1,5 +1,9 @@
 package com.batis.test.bankMembers;
 
+import java.util.List;
+
+import com.batis.test.bankAccount.BankAccountDTO;
+
 public class BankMembersDTO {
 	
 	private String userName;
@@ -7,6 +11,9 @@ public class BankMembersDTO {
 	private String name;
 	private String email;
 	private String phone;
+	
+	// 1 : N의 관계일 때
+	private List<BankAccountDTO> bankAccountDTOs;
 	
 	
 	public String getUserName() {
@@ -38,6 +45,13 @@ public class BankMembersDTO {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	public List<BankAccountDTO> getBankAccountDTOs() {
+		return bankAccountDTOs;
+	}
+	public void setBankAccountDTOs(List<BankAccountDTO> bankAccountDTOs) {
+		this.bankAccountDTOs = bankAccountDTOs;
 	}
 	
 

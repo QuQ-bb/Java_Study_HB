@@ -9,4 +9,25 @@
 		INSERT INTO BANKACCOUNT (accountnum,username,booknum,accountdate)
 		VALUES (account_seq.nextval ,#{userName}, #{bookNum}, SYSDATE)
 	</insert>
+	
+<select id="myAccount" parameterType="BankMembersDTO" resultMap="myAccountResult">
+SELECT A.ACCOUNTNUM,B.BOOKNAME,A.ACCOUNTDATE
+FROM BANKACCOUNT A
+	 JOIN 
+	 BANKBOOK B
+	 <!-- USING(BOOKNUM) -->
+	 ON A.BOOKNUM = B.BOOKNUM
+WHERE A.USERNAME = #{userName}	 
+</select>	
+
+	<!-- 1:1일때는 association을 사용한다 -->
+<resultMap type="BankAccountDTO" id="myAccountResult">
+	<id column="ACCOUNTNUM" property="AccountNum"/>
+	<result column="ACCOUNTDATE" property="AccountDate"/>
+	
+	<association property="bankBookDTO" javaType="BankBookDTO">
+		<result column="BOOKNAME" property="bookName"/>
+	</association>
+</resultMap>
+
 </mapper>
