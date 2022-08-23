@@ -159,6 +159,8 @@
 			<version>${org.springframework-version}</version>
 			<scope>test</scope><!-- scope는 테스트때만 사용하겠다 라는 뜻 -->
 		</dependency> 
+		
+		
 	</dependencies>
     <build>
         <plugins>

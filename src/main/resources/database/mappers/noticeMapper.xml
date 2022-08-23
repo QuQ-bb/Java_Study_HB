@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+<mapper namespace="com.batis.test.board.NoticeDAO">
+
+<select id="getList" resultType="NoticeDTO">
+SELECT NUM,TITLE,WRITER,REGDATE,HIT
+FROM NOTICE
+ORDER BY NUM DESC
+</select>
+<!-- 매개변수가 BoardDTO이기때문에 ParameterType을 맞춰주어야 한다. -->
+<!-- ParameterType을 NoticeDTO를 넣으려면 BoardDTO가 형변환해야함 -->
+<select id="getDetail" parameterType="BoardDTO" resultType="NoticeDTO">
+SELECT *
+FROM NOTICE
+WHERE NUM =#{num}
+</select>
+
+<insert id="setAdd" parameterType="BoardDTO">
+INSERT INTO NOTICE
+VALUES(
+	BOARD_SEQ.nextval,
+	#{title},
+	#{contents},
+	#{writer},
+	sysdate,
+	0
+)
+</insert>
+
+<update id="setUpdate" parameterType="BoardDTO">
+UPDATE NOTICE
+SET TITLE=#{title},CONTENTS=#{contents}
+WHERE NUM = #{num}
+</update>
+
+<delete id="setDelete" parameterType="BoardDTO">
+DELETE NOTICE 
+WHERE NUM =#{num}
+</delete>
+
+
+
+
+
+
+</mapper>		    

@@ -22,6 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.batis.test" />
+	<!-- 이 패키지 포함해서 annotation한번 훑고 간드앙 -->
 	
 	
 	

@@ -21,7 +21,7 @@ public class BankAccountDAOTest extends MyAbstracttest{
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
 		bankMembersDTO.setUserName("ID1");
 			List<BankAccountDTO> al = bankAccountDAO.myAccount(bankMembersDTO);
-			assertNotEquals(0, al.size());
+			assertNotEquals(0, al.size());	//다르냐?
 	}
 
 }
