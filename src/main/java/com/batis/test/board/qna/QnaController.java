@@ -2,6 +2,8 @@ package com.batis.test.board.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,13 +31,13 @@ public class QnaController {
 		return mv;
 	}
 	//글 조회
-	@RequestMapping(value="detail.ms",method=RequestMethod.POST)
+	@RequestMapping(value="detail.ms",method=RequestMethod.GET)
 	public String getDetial(BoardDTO boardDTO,Model model)throws Exception{
 		boardDTO = qnaService.getDetail(boardDTO);
 		
 		model.addAttribute("detail", boardDTO);
 		
-		return "qna.detail";
+		return "qna/detail";
 	}
 	//글작성
 	@RequestMapping(value="add.ms",method = RequestMethod.GET)
@@ -44,8 +46,9 @@ public class QnaController {
 		
 	}
 	@RequestMapping(value="add.ms",method=RequestMethod.POST)
-	public String setAdd(BoardDTO boardDTO)throws Exception{
+	public String setAdd(BoardDTO boardDTO,HttpSession session)throws Exception{
 		int result = qnaService.setAdd(boardDTO);
+		session.getAttribute("member");
 		
 		return "redirect:list.ms";
 	}

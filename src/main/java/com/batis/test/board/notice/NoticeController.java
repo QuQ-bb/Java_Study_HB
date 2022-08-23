@@ -2,6 +2,8 @@ package com.batis.test.board.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,10 +57,11 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="add.ms" ,method = RequestMethod.POST)
-	public ModelAndView setAdd(BoardDTO boardDTO)throws Exception{	//리턴타입이 void면 url이 요쳥 value와 같아진다
+	public ModelAndView setAdd(BoardDTO boardDTO,HttpSession session)throws Exception{	//리턴타입이 void면 url이 요쳥 value와 같아진다
 		ModelAndView mv = new ModelAndView();
 		int result = noticeService.setAdd(boardDTO);
 		mv.setViewName("redirect:list.ms");
+		session.getAttribute("member");
 		
 		return mv;
 	}
@@ -77,7 +80,7 @@ public class NoticeController {
 	public String setUpdate(BoardDTO boardDTO)throws Exception{
 		int result = noticeService.setUpdate(boardDTO);
 		
-		return "redirect:update.ms?num="+boardDTO.getNum();
+		return "redirect:detail.ms?num="+boardDTO.getNum();
 	}
 	
 	//글  삭제

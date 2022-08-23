@@ -13,8 +13,10 @@
           <div class="navbar-nav">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
             <a class="nav-link active" href="/bankbook/list.ms">상품리스트</a>
-            <a class="nav-link active" href="#">공지사항</a>
+            <a class="nav-link active" href="/notice/list.ms">공지사항</a>
             <a class="nav-link active" href="/bankmembers/searchID.ms">회원검색</a>
+            <a class="nav-link active" href="/qna/list.ms">QNA</a>
+            <
             <c:choose>
             	<c:when test="${member ne null }">
 		            <a class="nav-link active" href="/bankmembers/mypage.ms">마이페이지</a>
