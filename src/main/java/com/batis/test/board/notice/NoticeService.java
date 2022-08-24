@@ -34,48 +34,48 @@ public class NoticeService implements BoardService{
 //		map.put("lastRow", lastRow);
 //		
 //		===============================================================
-////		JSP 페이지 번호 출력 1 - ??
-////		1. 글의 총 갯수
-////		2. 글의 총 갯수를 이용해서 총 페이지 수 구하기
+//		JSP 페이지 번호 출력 1 - ??
+//		1. 글의 총 갯수
+//		2. 글의 총 갯수를 이용해서 총 페이지 수 구하기
 //		Long totalCount = noticeDAO.getCount();
 //		Long totalPage = ((totalCount-1)/perPage)+1;
 //		
-////		Long totalPage = totalCount/perPage;
-////		if(totalCount%perPage != 0) {
-//////			totalPage = totalPage+1;
-////			totalPage++;
-////		}
+//		Long totalPage = totalCount/perPage;
+//		if(totalCount%perPage != 0) {
+//			totalPage = totalPage+1;
+//			totalPage++;
+//		}
 //		
 //		
-////		3. Block : 한 페이지를 1Block이라고 하자
-////		perBlock : 한 페이지에 출력할 번호의 수
+//		3. Block : 한 페이지를 1Block이라고 하자
+//		perBlock : 한 페이지에 출력할 번호의 수
 //		Long perBlock =5L;
 //		Long totalBlock = totalPage/perBlock;
 //		if(totalPage%perBlock != 0) {
 //			totalBlock++;
 //		}
 //		
-////		4. page로 현재 Block 번호 찾기
-////		page 	curBlock
-////		 1			1
-////		 2			1
-////		 5			1
-////		 6			2
-////		 ..			..
-////		 11			3
+//		4. page로 현재 Block 번호 찾기
+//		page 	curBlock
+//		 1			1
+//		 2			1
+//		 5			1
+//		 6			2
+//		 ..			..
+//		 11			3
 //		
 //		Long curBlock = ((page-1)/perBlock)+1;
 //		
-////		Long curBlock = (page/perBlock);
-////		if(page%perBlock != 0) {
-////			curBlock++;
-////		}
+//		Long curBlock = (page/perBlock);
+//		if(page%perBlock != 0) {
+//			curBlock++;
+//		}
 //		
-////		5. curBlock로 시작번호와 끝번호 알아오기
-////		curBlock	startNum	lastNum
-////			1			1			5
-////			2			6			10
-////			3			11			15
+//		5. curBlock로 시작번호와 끝번호 알아오기
+//		curBlock	startNum	lastNum
+//			1			1			5
+//			2			6			10
+//			3			11			15
 //		Long startNum = ((curBlock-1)*perBlock)+1;
 //		Long lastNum =curBlock*perBlock;
 //		
