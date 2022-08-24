@@ -6,8 +6,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.batis.test.board.impl.BoardDTO;
@@ -19,12 +22,20 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
+	@ModelAttribute("board")
+	public String getBoard() {
+		return "NOTICE";
+	}
+	
+	
 	//글목록
 	@RequestMapping(value="list.ms", method=RequestMethod.GET)
-	public ModelAndView getList()throws Exception{	//매개변수 사용할때 : 주로 parameter 받아올 때
+	public ModelAndView getList(@RequestParam(defaultValue = "1") Long page)throws Exception{	//매개변수 사용할때 : 주로 parameter 받아올 때
+		System.out.println("page =="+page);
+		
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> al = noticeService.getList();
-		mv.setViewName("notice/list");
+		List<BoardDTO> al = noticeService.getList(page);
+		mv.setViewName("board/list");
 		mv.addObject("list", al);
 		
 		return mv;
@@ -36,7 +47,7 @@ public class NoticeController {
 	public ModelAndView getDetail(BoardDTO boardDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		boardDTO = noticeService.getDetail(boardDTO);
-		mv.setViewName("notice/detail");
+		mv.setViewName("board/detail");
 		mv.addObject("detail", boardDTO);
 		
 		return mv;
@@ -52,8 +63,8 @@ public class NoticeController {
 	//글 작성
 	//확장자를 붙여주고 리턴 타입을 void로 사용하면 경로를 제대로 가지 못 할 수 있다. 그렇기 때문에 String으로 return 시켜주기!!
 	@RequestMapping(value="add.ms", method = RequestMethod.GET)
-	public String setAdd()throws Exception{
-		return "notice/add";
+	public String setAdd(Model model)throws Exception{
+		return "board/add";
 	}
 	
 	@RequestMapping(value="add.ms" ,method = RequestMethod.POST)
@@ -71,7 +82,7 @@ public class NoticeController {
 	public ModelAndView setUpdate(BoardDTO boardDTO, ModelAndView mv)throws Exception{
 		boardDTO = noticeService.getDetail(boardDTO);
 		mv.addObject("update", boardDTO);
-		mv.setViewName("notice/update");
+		mv.setViewName("board/update");
 		
 		return mv;
 	}

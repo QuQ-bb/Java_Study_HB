@@ -13,7 +13,7 @@
 <c:import url="../template/header.jsp"></c:import>
 	<section class="container col-lg-3">
 		<div class="row">
-			<h3>ADD PAGE</h3>
+			<h3>${board} ADD PAGE</h3>
 			<form action="add.ms" method="post">
 				<input type="hidden" name="writer" value="${member.userName}">
 				<table border="1">

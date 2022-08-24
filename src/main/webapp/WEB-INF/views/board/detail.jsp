@@ -14,7 +14,7 @@
 
 	<section class="container col-lg-3">
 		<div class="row">
-			<h3>DATAIL PAGE</h3>
+			<h3>${board} DATAIL PAGE</h3>
 				<table border="1">
 					<tr>
 						<th>NUM</th>
@@ -43,7 +43,7 @@
 				</table>
 				<a href="./list.ms">Back List</a>
 				<a href="update.ms?num=${detail.num}">UPDATE</a>
-				<a href="./delete.ms">Delete</a>
+				<a href="./delete.ms?num=${detail.num}">Delete</a>
 		</div>
 	</section>
 	

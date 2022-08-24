@@ -13,7 +13,7 @@
 <c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-3">
 		<div class="row">
-		<h3>UPDATE PAGE</h3>
+		<h3>${board} UPDATE PAGE</h3>
 		<form action="update.ms" method="post">
 			<input type="hidden" name="num" value="${update.num}">
 			<table border="1">

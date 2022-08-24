@@ -1,11 +1,14 @@
 package com.batis.test.board.impl;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BoardDAO {
 	
 	//글목록
-	public List<BoardDTO> getList()throws Exception;
+	public List<BoardDTO> getList(Map<String, Long> map)throws Exception;
+	//글 총 갯수
+	public Long getCount()throws Exception;
 	//글 상세보기
 	public BoardDTO getDetail(BoardDTO boardDTO)throws Exception;
 	//글 쓰기

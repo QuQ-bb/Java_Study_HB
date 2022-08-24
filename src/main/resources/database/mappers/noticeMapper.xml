@@ -5,11 +5,19 @@
 		    
 <mapper namespace="com.batis.test.board.NoticeDAO">
 
-<select id="getList" resultType="NoticeDTO">
-SELECT NUM,TITLE,WRITER,REGDATE,HIT
-FROM NOTICE
-ORDER BY NUM DESC
+<select id="getList" parameterType="java.util.Map" resultType="NoticeDTO">
+SELECT * FROM
+    (SELECT ROWNUM R,N.* FROM
+        (SELECT * FROM NOTICE ORDER BY NUM DESC) N 
+    )
+WHERE R BETWEEN #{startRow} AND #{lastRow}
 </select>
+
+<select id="getCount" resultType="Long">
+SELECT COUNT(NUM)
+FROM NOTICE
+</select>
+
 <!-- 매개변수가 BoardDTO이기때문에 ParameterType을 맞춰주어야 한다. -->
 <!-- ParameterType을 NoticeDTO를 넣으려면 BoardDTO가 형변환해야함 -->
 <select id="getDetail" parameterType="BoardDTO" resultType="NoticeDTO">

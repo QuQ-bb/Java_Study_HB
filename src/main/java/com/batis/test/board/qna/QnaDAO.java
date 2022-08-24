@@ -20,7 +20,12 @@ public class QnaDAO implements BoardDAO{
 	public List<BoardDTO> getList() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getList");
 	}
-
+	@Override
+	public Long getCount() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getDetail",boardDTO);
@@ -40,5 +45,7 @@ public class QnaDAO implements BoardDAO{
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"setDelete",boardDTO);
 	}
+
+	
 
 }

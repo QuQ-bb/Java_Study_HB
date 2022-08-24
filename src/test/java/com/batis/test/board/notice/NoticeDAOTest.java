@@ -1,14 +1,11 @@
 package com.batis.test.board.notice;
 
-import static org.junit.Assert.assertNotEquals;
-
-import java.util.List;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.batis.test.MyAbstracttest;
-import com.batis.test.board.impl.BoardDTO;
 
 public class NoticeDAOTest extends MyAbstracttest {
 
@@ -16,10 +13,16 @@ public class NoticeDAOTest extends MyAbstracttest {
 	private NoticeDAO noticeDAO;
 	
 	@Test
-	public void listTest()throws Exception{
-		BoardDTO boardDTO = new BoardDTO();
-		List<BoardDTO> al =noticeDAO.getList();
-		assertNotEquals(0, al);
+//	public void listTest()throws Exception{
+//		BoardDTO boardDTO = new BoardDTO();
+//		List<BoardDTO> al =noticeDAO.getList();
+//		assertNotEquals(0, al);
+//	}
+	
+	public void countTest()throws Exception{
+		long result = noticeDAO.getCount();
+		
+		assertEquals(102L, result);
 	}
 //	public void detailTest()throws Exception{
 //		BoardDTO boardDTO = new BoardDTO();
@@ -28,12 +31,19 @@ public class NoticeDAOTest extends MyAbstracttest {
 //	}
 	
 //	public void addTest()throws Exception{
-//		BoardDTO boardDTO = new BoardDTO();
-//		boardDTO.setTitle("제목test");
-//		boardDTO.setContents("내용test");
-//		boardDTO.setWriter("작성자test");
-//		int result = noticeDAO.setAdd(boardDTO);
-//		System.out.println(result);
+//		
+//		for(int i=0; i<100; i++) {
+//			BoardDTO boardDTO = new BoardDTO();
+//			boardDTO.setTitle("제목test"+i);
+//			boardDTO.setContents("내용test"+i);
+//			boardDTO.setWriter("작성자test"+i);
+//			int result = noticeDAO.setAdd(boardDTO);
+//			
+//			if(i%10==0) {
+//				Thread.sleep(500);
+//			}
+//		}
+//		System.out.println("Finish");
 //	}
 	
 //	public void updateTest()throws Exception{
