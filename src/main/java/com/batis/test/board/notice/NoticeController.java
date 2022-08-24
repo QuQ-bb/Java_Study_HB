@@ -10,10 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.batis.test.board.impl.BoardDTO;
+import com.batis.test.util.Pager;
 
 @Controller
 @RequestMapping(value="/notice/*")
@@ -30,14 +30,16 @@ public class NoticeController {
 	
 	//글목록
 	@RequestMapping(value="list.ms", method=RequestMethod.GET)
-	public ModelAndView getList(@RequestParam(defaultValue = "1") Long page)throws Exception{	//매개변수 사용할때 : 주로 parameter 받아올 때
-		System.out.println("page =="+page);
-		
+	public ModelAndView getList(Pager pager)throws Exception{	//매개변수 사용할때 : 주로 parameter 받아올 때
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> al = noticeService.getList(page);
-		mv.setViewName("board/list");
-		mv.addObject("list", al);
+		System.out.println("시발 페이지 졸려 아 = "+pager.getPage());
 		
+//		System.out.println("page =="+pager.getPage());
+//		
+		List<BoardDTO> al = noticeService.getList(pager);
+		mv.addObject("list", al);
+		mv.addObject("pager", pager);
+		mv.setViewName("board/list");
 		return mv;
 		
 	}

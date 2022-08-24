@@ -1,12 +1,13 @@
 package com.batis.test.board.impl;
 
 import java.util.List;
-import java.util.Map;
+
+import com.batis.test.util.Pager;
 
 public interface BoardDAO {
 	
 	//글목록
-	public List<BoardDTO> getList(Map<String, Long> map)throws Exception;
+	public List<BoardDTO> getList(Pager pager)throws Exception;
 	//글 총 갯수
 	public Long getCount()throws Exception;
 	//글 상세보기

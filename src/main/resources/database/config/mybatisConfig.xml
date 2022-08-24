@@ -11,6 +11,7 @@
 		<typeAlias type="com.batis.test.board.impl.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.batis.test.board.notice.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.batis.test.board.qna.QnaDTO" alias="QnaDTO"/>
+		<typeAlias type="com.batis.test.util.Pager" alias="Pager"/>
 		<typeAlias type="java.lang.String" alias="Sting"/>	
 		<typeAlias type="java.lang.Long" alias="Long"/>	
 		<typeAlias type="java.util.List" alias="List"/>	

@@ -1,14 +1,13 @@
 package com.batis.test.board.notice;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.batis.test.board.impl.BoardDTO;
 import com.batis.test.board.impl.BoardService;
+import com.batis.test.util.Pager;
 @Service
 public class NoticeService implements BoardService{
 	
@@ -16,28 +15,77 @@ public class NoticeService implements BoardService{
 	private NoticeDAO noticeDAO;
 
 	@Override
-	public List<BoardDTO> getList(Long page) throws Exception {
-		System.out.println("page== "+page);
+	public List<BoardDTO> getList(Pager pager) throws Exception {
+		pager.getRowNum();
+		Long totalCount = noticeDAO.getCount();
+		pager.getNum(totalCount);
 		
-		Long perPage = 10L;
-		//page		startrow		 lastrow
-		// 1			1				10
-		// 2			11				20
-		// 3			21				30
-		Long startRow = (page-1)*perPage+1;
-		Long lastRow = page*perPage;
 		
-		Map<String, Long> map = new HashMap<String, Long>();
-		map.put("startRow", startRow);
-		map.put("lastRow", lastRow);
-		
+//		Long perPage = 10L;
+//		//page		startrow		 lastrow
+//		// 1			1				10
+//		// 2			11				20
+//		// 3			21				30
+//		Long startRow = (pager.getPage()-1)*perPage+1;
+//		Long lastRow = pager.getPage()*perPage;
+//		
+//		Map<String, Long> map = new HashMap<String, Long>();
+//		map.put("startRow", startRow);
+//		map.put("lastRow", lastRow);
+//		
 //		===============================================================
-		
-		
-		System.out.println("StartRow== "+startRow);
-		System.out.println("lastRow== "+lastRow);
+////		JSP 페이지 번호 출력 1 - ??
+////		1. 글의 총 갯수
+////		2. 글의 총 갯수를 이용해서 총 페이지 수 구하기
+//		Long totalCount = noticeDAO.getCount();
+//		Long totalPage = ((totalCount-1)/perPage)+1;
+//		
+////		Long totalPage = totalCount/perPage;
+////		if(totalCount%perPage != 0) {
+//////			totalPage = totalPage+1;
+////			totalPage++;
+////		}
+//		
+//		
+////		3. Block : 한 페이지를 1Block이라고 하자
+////		perBlock : 한 페이지에 출력할 번호의 수
+//		Long perBlock =5L;
+//		Long totalBlock = totalPage/perBlock;
+//		if(totalPage%perBlock != 0) {
+//			totalBlock++;
+//		}
+//		
+////		4. page로 현재 Block 번호 찾기
+////		page 	curBlock
+////		 1			1
+////		 2			1
+////		 5			1
+////		 6			2
+////		 ..			..
+////		 11			3
+//		
+//		Long curBlock = ((page-1)/perBlock)+1;
+//		
+////		Long curBlock = (page/perBlock);
+////		if(page%perBlock != 0) {
+////			curBlock++;
+////		}
+//		
+////		5. curBlock로 시작번호와 끝번호 알아오기
+////		curBlock	startNum	lastNum
+////			1			1			5
+////			2			6			10
+////			3			11			15
+//		Long startNum = ((curBlock-1)*perBlock)+1;
+//		Long lastNum =curBlock*perBlock;
+//		
+//		
+//		System.out.println("StartRow== "+startRow);
+//		System.out.println("lastRow== "+lastRow);
+//		System.out.println("totalCount == "+totalCount);
+//		System.out.println("totalPage == "+totalPage);
 				
-		return noticeDAO.getList(map);
+		return noticeDAO.getList(pager);
 	}
 	
 

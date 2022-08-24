@@ -2,10 +2,12 @@ package com.batis.test.board.impl;
 
 import java.util.List;
 
+import com.batis.test.util.Pager;
+
 public interface BoardService {
 	
 	//글 목록
-	public List<BoardDTO> getList(Long page)throws Exception;
+	public List<BoardDTO> getList(Pager pager)throws Exception;
 	//글조회
 	public BoardDTO getDetail(BoardDTO boardDTO)throws Exception;
 	//글 쓰기
