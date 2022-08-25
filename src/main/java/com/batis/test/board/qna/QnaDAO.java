@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.batis.test.board.impl.BoardDAO;
 import com.batis.test.board.impl.BoardDTO;
+import com.batis.test.util.Pager;
 
 @Repository
 public class QnaDAO implements BoardDAO{
@@ -16,14 +17,22 @@ public class QnaDAO implements BoardDAO{
 	private SqlSession sqlSession;
 	private final String NAMESPACE ="com.batis.test.board.qna.QnaDAO.";
 
+	
+	public int setReplyAdd(QnaDTO qnaDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setReplyAdd",qnaDTO);
+	}
+	
+	public int setStepUpdate(QnaDTO qnaDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"setStepUpdate",qnaDTO);
+	}
+	
 	@Override
-	public List<BoardDTO> getList() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getList");
+	public List<BoardDTO> getList(Pager pager) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getList",pager);
 	}
 	@Override
-	public Long getCount() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Long getCount(Pager pager)throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getCount",pager);
 	}
 	
 	@Override

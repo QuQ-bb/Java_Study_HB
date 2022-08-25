@@ -7,13 +7,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.batis.test.board.impl.BoardDTO;
+import com.batis.test.util.Pager;
 
 @Controller
 @RequestMapping(value="/qna/*")
@@ -26,14 +28,27 @@ public class QnaController {
 	public String getQna() {
 		return "QNA";
 	}
+	@GetMapping("reply.ms")
+	public ModelAndView setReply(BoardDTO boardDTO,ModelAndView mv)throws Exception{
+			mv.setViewName("board/reply");
+			mv.addObject("reply", boardDTO);
+			return mv;
+	}
+	@PostMapping
+	public String setReply(QnaDTO qnaDTO)throws Exception{
+		int result = qnaService.setReply(qnaDTO);
+		
+		return "redirect:list.ms";
+	}
 	
 	//글목록
 	@RequestMapping(value="list.ms",method=RequestMethod.GET)
-	public ModelAndView getList(@RequestParam(defaultValue = "1") Long page)throws Exception{
+	public ModelAndView getList(Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> al = qnaService.getList(page);
-		mv.setViewName("board/list");
+		List<BoardDTO> al = qnaService.getList(pager);
 		mv.addObject("list", al);
+		mv.addObject("pager", pager);
+		mv.setViewName("board/list");
 		
 		return mv;
 	}

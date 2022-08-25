@@ -39,15 +39,14 @@ public class Pager {
 		//2. totalCount로 totalPage구하기 ex)100
 		Long totalPage = (totalCount-1)/this.getPerPage()+1;
 		System.out.println("getPage"+this.getPerPage());
-		System.out.println("토탈 페이지"+totalPage);
+//		System.out.println("토탈 페이지"+totalPage);
 //		2-1 totalPage보다 pager가 더 클 경우
 		if(this.getPage() > totalPage) {
 			this.setPage(totalPage);
 		}
 //		3. totalPage로 totalBlock 구하기
 		Long totalBlock = (totalPage-1)/this.getPerBlock()+1;
-
-		System.out.println("토탈 블럭"+totalBlock);
+//		System.out.println("토탈 블럭"+totalBlock);
 	//	4. page로 curBlock찾기
 		Long curBlock = this.getPage()/this.getPerBlock();
 		if(this.getPage()%this.getPerBlock() != 0) {
@@ -61,10 +60,10 @@ public class Pager {
 		//6. curBlock이 마지막 Block(totalBlock과 같을 때)
 		if(curBlock == totalBlock) {
 			this.lastNum = totalPage;
-			System.out.println("현재블럭"+curBlock);
-			System.out.println("마지막 블럭"+totalBlock);
-			System.out.println("되라 넘새끼"+this.lastNum);
-			System.out.println("전체 수"+totalPage);
+//			System.out.println("현재블럭"+curBlock);
+//			System.out.println("마지막 블럭"+totalBlock);
+//			System.out.println("되라 넘새끼"+this.lastNum);
+//			System.out.println("전체 수"+totalPage);
 		}
 		
 		//7. 이전,다음블럭의 유무
@@ -151,6 +150,9 @@ public class Pager {
 	}
 
 	public String getSearch() {
+		if(this.search==null) {
+			this.search="";
+		}
 		return search;
 	}
 
