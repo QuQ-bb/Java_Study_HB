@@ -35,7 +35,9 @@ public class NoticeController {
 		System.out.println("시발 페이지 졸려 아 = "+pager.getPage());
 		
 //		System.out.println("page =="+pager.getPage());
-//		
+		System.out.println(pager.getKind());
+		System.out.println(pager.getSearch());
+		
 		List<BoardDTO> al = noticeService.getList(pager);
 		mv.addObject("list", al);
 		mv.addObject("pager", pager);

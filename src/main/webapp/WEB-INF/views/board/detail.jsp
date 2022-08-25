@@ -41,6 +41,10 @@
 						<td>${detail.contents}</td>
 					</tr>
 				</table>
+				<div class="row">
+					<a href="./reply.ms?num=${detail.num}">REPLY</a>
+				</div>
+				
 				<a href="./list.ms">Back List</a>
 				<a href="update.ms?num=${detail.num}">UPDATE</a>
 				<a href="./delete.ms?num=${detail.num}">Delete</a>

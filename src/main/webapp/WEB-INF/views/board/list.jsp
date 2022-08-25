@@ -29,7 +29,7 @@
 				   <div class="col-12">
 				    <label class="visually-hidden" for="search">검색어</label>
 				    <div class="input-group">
-				      <input type="text" name="search" value="" class="form-control" id="search" placeholder="SEARCH">
+				      <input type="text" name="search" class="form-control" id="search" placeholder="SEARCH">
 				    </div>
 				  </div>
 				
@@ -51,6 +51,10 @@
 					<tr>
 						<td>${list.num}</td>
 						<td>
+						<!-- for(int i=0; i<=end;  i++) -->
+						<c:catch>
+						<c:forEach begin="1" end="${list.depth}">--</c:forEach>
+						</c:catch>
 						<a href="detail.ms?num=${list.num}">
 						${list.title}
 						</a>
@@ -66,14 +70,14 @@
 			  <ul class="pagination">
 			  <c:if test="${pager.pre}">
 			    <li class="page-item">
-			      <a class="page-link" href="./list.ms?page=${pager.startNum-1}" aria-label="Previous">
+			      <a class="page-link" href="./list.ms?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
 			        <span aria-hidden="true">&laquo;</span>
 			      </a>
 			    </li>
 			    </c:if>
 			    
 			    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i" >
-			    <li class="page-item"><a class="page-link" href="./list.ms?page=${i}">${i}</a></li>
+			    <li class="page-item"><a class="page-link" href="./list.ms?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 			    </c:forEach>
 			    
 			    <%-- <c:choose>
@@ -85,7 +89,7 @@
 			    	</c:otherwise>
 			    </c:choose> --%>
 			    <li class="page-item ${pager.next?'':'disabled'}">
-			      <a class="page-link" href="./list.ms?page=${pager.lastNum+1}" aria-label="Next">
+			      <a class="page-link" href="./list.ms?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
 			      </a>
 			    </li>
