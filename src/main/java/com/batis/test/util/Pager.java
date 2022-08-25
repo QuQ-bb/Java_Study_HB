@@ -15,6 +15,15 @@ public class Pager {
 	private Long perBlock;		//한 페이지에 출력할 번호의 갯수
 	
 	
+	private boolean pre;		//이전 블럭의 유무 : 이전불륵이 있으면 true, 없으면 false
+	private boolean next;		//다음 블럭의 유무 : 다음블럭이 있으면 true, 없으면 false
+	
+	//검색 컬럼의 종류
+	private String kind;
+	//검색어
+	private String search;
+	
+	
 	public Pager() {
 		this.perPage =10L;
 		this.perBlock =5L;
@@ -28,30 +37,48 @@ public class Pager {
 //	2. jsp에서 사용 할 값 게산
 	public void getNum(Long totalCount)throws Exception{
 		//2. totalCount로 totalPage구하기 ex)100
-		Long totalPage = totalCount/this.getPage();
-		if(totalCount%this.getPerPage() !=0) {
-			totalPage++;
+		Long totalPage = (totalCount-1)/this.getPerPage()+1;
+		System.out.println("getPage"+this.getPerPage());
+		System.out.println("토탈 페이지"+totalPage);
+//		2-1 totalPage보다 pager가 더 클 경우
+		if(this.getPage() > totalPage) {
+			this.setPage(totalPage);
 		}
 //		3. totalPage로 totalBlock 구하기
-	Long totalBlock = totalPage/this.getPerBlock();
-	if(totalPage%this.getPerBlock() != 0) {
-		totalBlock++;
-	}
+		Long totalBlock = (totalPage-1)/this.getPerBlock()+1;
+
+		System.out.println("토탈 블럭"+totalBlock);
+	//	4. page로 curBlock찾기
+		Long curBlock = this.getPage()/this.getPerBlock();
+		if(this.getPage()%this.getPerBlock() != 0) {
+			curBlock++;
+		}
+		System.out.println("현재블럭"+curBlock);
+		//5.curBlock으로 startNum ,lastNum 구하기
+		this.startNum = (curBlock -1)*this.getPerBlock()+1;
+		this.lastNum = curBlock*this.getPerBlock();
+		
+		//6. curBlock이 마지막 Block(totalBlock과 같을 때)
+		if(curBlock == totalBlock) {
+			this.lastNum = totalPage;
+			System.out.println("현재블럭"+curBlock);
+			System.out.println("마지막 블럭"+totalBlock);
+			System.out.println("되라 넘새끼"+this.lastNum);
+			System.out.println("전체 수"+totalPage);
+		}
+		
+		//7. 이전,다음블럭의 유무
+		if(curBlock >1) {
+			pre =true;
+		}
+		if(curBlock < totalBlock) {
+			next = true;
+		}
+	}//getNum
 	
-//	4. page로 curBlock찾기
-	Long curBlock = this.getPage()/this.getPerBlock();
-	if(this.getPage()%this.getPerBlock() != 0) {
-		curBlock++;
-	}
-	//5.curBlock으로 startNum ,lastNum 구하기
-	this.startNum = (curBlock -1)*this.getPerBlock()+1;
-	this.lastNum = curBlock*this.getPerBlock();
-	
-	
-	}
 	
 	public Long getPage() {
-		if(this.page ==null) {
+		if(this.page ==null || this.page <= 0) {
 			this.page = 1L;
 		}
 		return page;
@@ -97,6 +124,38 @@ public class Pager {
 	}
 	public void setPerBlock(Long perBlock) {
 		this.perBlock = perBlock;
+	}
+
+	public boolean isPre() {	//is로 return되는것은 boolean 맞냐 안맞냐 체크해주는것
+		return pre;
+	}
+
+	public void setPre(boolean pre) {
+		this.pre = pre;
+	}
+
+	public boolean isNext() {
+		return next;
+	}
+
+	public void setNext(boolean next) {
+		this.next = next;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
 	}
 
 }

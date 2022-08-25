@@ -16,9 +16,9 @@ public class NoticeService implements BoardService{
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
-		pager.getRowNum();
 		Long totalCount = noticeDAO.getCount();
 		pager.getNum(totalCount);
+		pager.getRowNum();
 		
 		
 //		Long perPage = 10L;
@@ -47,9 +47,10 @@ public class NoticeService implements BoardService{
 //		}
 //		
 //		
-//		3. Block : 한 페이지를 1Block이라고 하자
+//		3. Block : 한 페이지에 있는 버튼을 1Block이라고 하자
 //		perBlock : 한 페이지에 출력할 번호의 수
 //		Long perBlock =5L;
+//		Long totalBlock = (totalPage-1)/perBlock+1;
 //		Long totalBlock = totalPage/perBlock;
 //		if(totalPage%perBlock != 0) {
 //			totalBlock++;
