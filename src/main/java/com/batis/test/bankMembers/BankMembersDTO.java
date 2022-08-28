@@ -12,8 +12,10 @@ public class BankMembersDTO {
 	private String email;
 	private String phone;
 	
-	// 1 : N의 관계일 때
+	// 1 : N의 관계일 때 회원이 여러개의 계좌를 개발할수 있기때문에 LIST
 	private List<BankAccountDTO> bankAccountDTOs;
+	//파일
+	private BankMembersFileDTO bankMembersFileDTO;
 	
 	
 	public String getUserName() {
@@ -52,6 +54,12 @@ public class BankMembersDTO {
 	}
 	public void setBankAccountDTOs(List<BankAccountDTO> bankAccountDTOs) {
 		this.bankAccountDTOs = bankAccountDTOs;
+	}
+	public BankMembersFileDTO getBankMembersFileDTO() {
+		return bankMembersFileDTO;
+	}
+	public void setBankMembersFileDTO(BankMembersFileDTO bankMembersFileDTO) {
+		this.bankMembersFileDTO = bankMembersFileDTO;
 	}
 	
 

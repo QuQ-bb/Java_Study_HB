@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.batis.test.board.impl.BoardDAO;
 import com.batis.test.board.impl.BoardDTO;
+import com.batis.test.board.impl.BoardFileDTO;
 import com.batis.test.util.Pager;
 
 @Repository
@@ -43,6 +44,9 @@ public class QnaDAO implements BoardDAO{
 	@Override
 	public int setAdd(BoardDTO boardDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setAdd",boardDTO);
+	}
+	public int setAddFile(BoardFileDTO boardFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAddFile",boardFileDTO);
 	}
 
 	@Override

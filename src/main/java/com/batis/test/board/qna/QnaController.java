@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.batis.test.board.impl.BoardDTO;
@@ -26,7 +27,7 @@ public class QnaController {
 
 	@ModelAttribute("board")
 	public String getQna() {
-		return "QNA";
+		return "qna";
 	}
 	@GetMapping("reply.ms")
 	public ModelAndView setReply(BoardDTO boardDTO,ModelAndView mv)throws Exception{
@@ -68,8 +69,8 @@ public class QnaController {
 		
 	}
 	@RequestMapping(value="add.ms",method=RequestMethod.POST)
-	public String setAdd(BoardDTO boardDTO,HttpSession session)throws Exception{
-		int result = qnaService.setAdd(boardDTO);
+	public String setAdd(BoardDTO boardDTO,HttpSession session,MultipartFile[] files)throws Exception{
+		int result = qnaService.setAdd(boardDTO,files);
 		session.getAttribute("member");
 		
 		return "redirect:list.ms";

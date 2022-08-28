@@ -57,11 +57,29 @@ FROM QNA
 <include refid="search"></include>
 </select>
 
-<select id="getDetail" parameterType="BoardDTO" resultType="QnaDTO">
-SELECT * 
-FROM QNA
-WHERE NUM = #{num}
+<select id="getDetail" parameterType="BoardDTO" resultMap="DetailResult">
+SELECT Q.*,F.FILENUM,F.FILENAME 
+FROM QNA Q
+	LEFT JOIN
+	 QNAFILE F
+	 ON Q.NUM = F.NUM
+WHERE Q.NUM = #{num}
 </select>
+
+<resultMap type="QnaDTO" id="DetailResult">
+	<id column="NUM" property="num"/>
+	<result column="TITLE" property="title"/>
+	<result column="CONTENTS" property="contents"/>
+	<result column="WRITER" property="writer"/>
+	<result column="REGDATE" property="regdate"/>
+	<result column="HIT" property="hit"/>
+	
+	<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+		<id column="FILENUM" property="fileNum"/>
+		<result column="FILENAME" property="fileName"/>
+	</collection>
+</resultMap>
+
 
 <insert id="setAdd" parameterType="BoardDTO">
 <selectKey keyProperty="num" order="BEFORE" resultType="Long">
@@ -81,6 +99,17 @@ VALUES(
 	0
 )
 </insert>
+
+<insert id="setAddFile" parameterType="BoardFileDTO">
+INSERT INTO QNAFILE
+VALUES(
+	FILE_SEQ.NEXTVAL,
+	#{fileName},
+	#{oriName},
+	#{num}
+)
+</insert>
+
 
 <update id="setUpdate" parameterType="BoardDTO">
 UPDATE QNA

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -25,9 +26,16 @@ public class BankMembersController {
 		System.out.println("JOIN GET 실행");
 	}
 	@RequestMapping(value="join.ms", method= RequestMethod.POST)
-	public String join(BankMembersDTO bankMembersDTO)throws Exception{
+	public String join(BankMembersDTO bankMembersDTO,MultipartFile photo)throws Exception{
+//		
+		
+		
 		System.out.println("JOIN POST 실행");
-		bankMembersService.join(bankMembersDTO);
+		
+		System.out.println("업로드 시 파일명== "+photo.getOriginalFilename());
+		System.out.println("업로드시 파라미터명"+photo.getName());
+		System.out.println("업로드시 파일의 크기"+photo.getSize());
+		bankMembersService.join(bankMembersDTO,photo);
 		
 		return "redirect:/";
 	}

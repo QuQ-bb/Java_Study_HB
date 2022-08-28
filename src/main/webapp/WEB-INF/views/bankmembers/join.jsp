@@ -12,11 +12,11 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
-	<section class="container-fluid ">
+	<section class="container-fluid col-lg-3">
 		<div class="row">
 		<h3>JOIN PAGE</h3>
 
-	<form action="join.ms" method="post">
+	<form action="join.ms" method="post" enctype="multipart/form-data">
 		<table class="table table-hover" border="1">
 			<tr>
 				<th>USERNAME</th>
@@ -37,6 +37,10 @@
 			<tr>
 				  <th>PHONE</th>
 				<td><input type="text" class="form-control" name="phone" placeholder="phone번호를 입력해주세요"></td>
+			</tr>
+			<tr>
+				  <th>FILE</th>
+				<td><input type="file" class="form-control" name="photo"></td>
 			</tr>
 		</table>
 			<a href="/">Back</a>

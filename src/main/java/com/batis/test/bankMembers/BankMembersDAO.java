@@ -13,6 +13,10 @@ public class BankMembersDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.batis.test.bankMembers.BankMembersDAO.";
 	
+	public int setAddFile(BankMembersFileDTO bankMembersFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAddFile",bankMembersFileDTO);
+	}
+	
 	//회원가입
 	public int join(BankMembersDTO bankMembersDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"join",bankMembersDTO);

@@ -4,6 +4,15 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 <mapper namespace="com.batis.test.bankMembers.BankMembersDAO">
+<insert id="setAddFile" parameterType="BankMembersFileDTO">
+INSERT INTO MEMBERFILE
+VALUES(
+	FILE_SEQ.NEXTVAL,
+	#{fileName},
+	#{oriName},
+	#{userName}
+)
+</insert>
 
 <insert id="join" parameterType="com.batis.test.bankMembers.BankMembersDTO">
 INSERT INTO BANKMEMBERS
@@ -28,12 +37,15 @@ WHERE USERNAME LIKE '%'||#{search}||'%'
 </select>
 
 <select id="mypage" parameterType="BankMembersDTO" resultMap="mypageResult">
-SELECT M.USERNAME,M.NAME,M.EMAIL,M.PHONE,A.ACCOUNTNUM,B.BOOKNAME,A.ACCOUNTDATE
+SELECT M.USERNAME, M.NAME, M.EMAIL, M.PHONE, F.FILENUM, F.FILENAME,A.ACCOUNTNUM,B.BOOKNAME,A.ACCOUNTDATE
 FROM BANKMEMBERS M
-	JOIN
+	 LEFT JOIN
+	 MEMBERFILE F
+	 ON M.USERNAME = F.USERNAME
+	 LEFT JOIN
 	 BANKACCOUNT A
 	 ON M.USERNAME = A.USERNAME
-	JOIN
+	 LEFT JOIN
 	BANKBOOK B
 	ON A.BOOKNUM = B.BOOKNUM 
 WHERE M.USERNAME = #{userName}
@@ -45,6 +57,10 @@ WHERE M.USERNAME = #{userName}
 	<result column="NAME" property="name" />
 	<result column="EMAIL" property="email"/>
 	<result column="PHONE" property="phone"/>
+		<association property="bankMembersFileDTO" javaType="BankMembersFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+		</association>
 	<collection property="bankAccountDTOs" javaType="List" ofType="BankAccountDTO">
 		<id column="ACCOUNTNUM" property="AccountNum"/>
 		<result column="ACCOUNTDATE" property="AccountDate"/>
@@ -53,6 +69,7 @@ WHERE M.USERNAME = #{userName}
 				<result column="BOOKNAME" property="bookName"/>
 			</association>
 	</collection>
+	
 </resultMap>
 
 </mapper>		    

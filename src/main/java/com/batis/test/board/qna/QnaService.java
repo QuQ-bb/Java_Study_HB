@@ -1,11 +1,17 @@
 package com.batis.test.board.qna;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.batis.test.board.impl.BoardDTO;
+import com.batis.test.board.impl.BoardFileDTO;
 import com.batis.test.board.impl.BoardService;
 import com.batis.test.util.Pager;
 
@@ -14,6 +20,8 @@ public class QnaService implements BoardService{
 	
 	@Autowired
 	private QnaDAO qnaDAO;
+	@Autowired
+	private ServletContext servletContext;
 
 	public int setReply(QnaDTO qnaDTO)throws Exception{
 		 BoardDTO boardDTO =qnaDAO.getDetail(qnaDTO);
@@ -48,11 +56,36 @@ public class QnaService implements BoardService{
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO) throws Exception {
-		System.out.println();
-		System.out.println("Insert 전: "+boardDTO.getNum());
+	public int setAdd(BoardDTO boardDTO,MultipartFile [] files) throws Exception {
 		int result = qnaDAO.setAdd(boardDTO);
-		System.out.println("Insert 후: "+boardDTO.getNum());
+		
+		String realPath = servletContext.getRealPath("resources/upload/qna");
+		System.out.println(realPath);
+		
+		for(MultipartFile qnaFile: files) {
+//			저장할 폴더의 정보를 가지는 자바 객체 생성
+			File file = new File(realPath);
+			
+			if(qnaFile.isEmpty()) {
+				continue;
+			}//if문 end
+			if(!file.exists()) {
+				file.mkdirs();
+			}//if문 end
+			String fileName = UUID.randomUUID().toString();
+			
+			fileName = fileName+"_"+qnaFile.getOriginalFilename();
+			file = new File(file, fileName);
+			qnaFile.transferTo(file);
+			
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(qnaFile.getOriginalFilename());
+			boardFileDTO.setNum(boardDTO.getNum());
+			
+			qnaDAO.setAddFile(boardFileDTO);
+		}//for문 end
+		
 		return result;
 	}
 

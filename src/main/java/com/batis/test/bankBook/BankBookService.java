@@ -2,6 +2,8 @@ package com.batis.test.bankBook;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +12,10 @@ public class BankBookService {
 
 	@Autowired
 	private BankBookDAO dao;
+	@Autowired
+	private ServletContext servletContext;
 	
-	public int addBankBook(BankBookDTO dto) {
+	public int addBankBook(BankBookDTO dto){
 		return dao.addBankBook(dto);
 	}
 	

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.batis.test.board.impl.BoardDTO;
@@ -24,7 +25,7 @@ public class NoticeController {
 	
 	@ModelAttribute("board")
 	public String getBoard() {
-		return "NOTICE";
+		return "notice";
 	}
 	
 	
@@ -53,6 +54,8 @@ public class NoticeController {
 		boardDTO = noticeService.getDetail(boardDTO);
 		mv.setViewName("board/detail");
 		mv.addObject("detail", boardDTO);
+		System.out.println(boardDTO);
+		
 		
 		return mv;
 	}
@@ -72,9 +75,9 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="add.ms" ,method = RequestMethod.POST)
-	public ModelAndView setAdd(BoardDTO boardDTO,HttpSession session)throws Exception{	//리턴타입이 void면 url이 요쳥 value와 같아진다
+	public ModelAndView setAdd(BoardDTO boardDTO,HttpSession session, MultipartFile [] files)throws Exception{	//리턴타입이 void면 url이 요쳥 value와 같아진다
 		ModelAndView mv = new ModelAndView();
-		int result = noticeService.setAdd(boardDTO);
+		int result = noticeService.setAdd(boardDTO,files);
 		mv.setViewName("redirect:list.ms");
 		session.getAttribute("member");
 		

@@ -1,8 +1,5 @@
 package com.batis.test.board.notice;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.batis.test.MyAbstracttest;
@@ -12,18 +9,18 @@ public class NoticeDAOTest extends MyAbstracttest {
 	@Autowired
 	private NoticeDAO noticeDAO;
 	
-	@Test
+//	@Test
 //	public void listTest()throws Exception{
 //		BoardDTO boardDTO = new BoardDTO();
 //		List<BoardDTO> al =noticeDAO.getList();
 //		assertNotEquals(0, al);
 //	}
 	
-	public void countTest()throws Exception{
-		long result = noticeDAO.getCount();
-		
-		assertEquals(102L, result);
-	}
+//	public void countTest()throws Exception{
+//		long result = noticeDAO.getCount();
+//		
+//		assertEquals(102L, result);
+//	}
 //	public void detailTest()throws Exception{
 //		BoardDTO boardDTO = new BoardDTO();
 //		boardDTO.setNum(2L);
