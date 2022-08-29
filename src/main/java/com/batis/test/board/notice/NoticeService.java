@@ -1,8 +1,6 @@
 package com.batis.test.board.notice;
 
-import java.io.File;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.ServletContext;
 
@@ -13,14 +11,17 @@ import org.springframework.web.multipart.MultipartFile;
 import com.batis.test.board.impl.BoardDTO;
 import com.batis.test.board.impl.BoardFileDTO;
 import com.batis.test.board.impl.BoardService;
+import com.batis.test.util.FileManager;
 import com.batis.test.util.Pager;
 @Service
 public class NoticeService implements BoardService{
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
+//	@Autowired
+//	private ServletContext servelContext;
 	@Autowired
-	private ServletContext servelContext;
+	private FileManager fileManager;
 
 
 	@Override
@@ -107,47 +108,59 @@ public class NoticeService implements BoardService{
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO,MultipartFile [] files) throws Exception {
+	public int setAdd(BoardDTO boardDTO,ServletContext servletContext,MultipartFile [] files) throws Exception {
 		int result =noticeDAO.setAdd(boardDTO);
 //		1. HDD에 파일을 저장
 //		 파일을 저장시에 경로는 Tomcat기준이 아니라 OS의 기준으로 설정
 //		1) 파일저장 위치
 //		 webapp/resources/upload/notice
-		System.out.println("num을 찾아 산멀리 =="+boardDTO.getNum()); 
 //		2) 저장할 폴더의 실제경로 반환(OS기준)
-		String realPath = servelContext.getRealPath("resources/upload/notice");
-		System.out.println(realPath);
+//		String realPath = servelContext.getRealPath("resources/upload/notice");
+//		System.out.println(realPath);
+////		
 //		
+//		BoardFileDTO boardFileDTO =  null;
+//		for(MultipartFile fileUp : files) {
+//			if(fileUp.isEmpty()) {
+//				continue;
+//			}//if문 end
+////			3) 저장할 홀더의 정보를 가지는 자바 객체 생성
+//			File file = new File(realPath);	//경로 초기화
+//			if(!file.exists()) {
+//				file.mkdirs();//파일만들기
+//			}//if문	
+//			
+//			String fileName = UUID.randomUUID().toString();
+////			중복되지 않는 파일명 생성
+//			fileName = fileName+"_"+fileUp.getOriginalFilename();
+////			어느 폴더에 어떤 이름을 저장할 File 객체를 생성
+//			file = new File(file, fileName); //경로,파일명
+////			MultipartFile 클래스의 transferTo 매서드 사용
+//			fileUp.transferTo(file);
+//			System.out.println("너왜 널뜸?=="+fileUp.getOriginalFilename());
+//			
+////			2.저장된 파일정보를 DB연결 시키기
+//			boardFileDTO = new BoardFileDTO();
+//			boardFileDTO.setFileName(fileName);
+//			System.out.println("fileName ===="+fileName);
+//			boardFileDTO.setOriName(fileUp.getOriginalFilename());
+//			boardFileDTO.setNum(boardDTO.getNum());
+//			
+//			noticeDAO.setAddFile(boardFileDTO);
+//		}//for문 end
 		
-		BoardFileDTO boardFileDTO =  null;
-		for(MultipartFile fileUp : files) {
-			if(fileUp.isEmpty()) {
+		String path ="resources/upload/notice";
+		
+		for(MultipartFile multipartFile:files) {
+			if(multipartFile.isEmpty()) {
 				continue;
-			}//if문 end
-//			3) 저장할 홀더의 정보를 가지는 자바 객체 생성
-			File file = new File(realPath);
-			if(!file.exists()) {
-				file.mkdirs();//파일만들기
-			}//if문	
-			
-			String fileName = UUID.randomUUID().toString();
-//			중복되지 않는 파일명 생성
-			fileName = fileName+"_"+fileUp.getOriginalFilename();
-//			어느 폴더에 어떤 이름을 저장할 File 객체를 생성
-			file = new File(file, fileName);
-//			MultipartFile 클래스의 transferTo 매서드 사용
-			fileUp.transferTo(file);
-			System.out.println("너왜 널뜸?=="+fileUp.getOriginalFilename());
-			
-//			2.저장된 파일정보를 DB연결 시키기
-			boardFileDTO = new BoardFileDTO();
+			}
+		 String fileName = fileManager.saveFile(path, servletContext, multipartFile);
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
 			boardFileDTO.setFileName(fileName);
-			System.out.println("fileName ===="+fileName);
-			boardFileDTO.setOriName(fileUp.getOriginalFilename());
+			boardFileDTO.setOriName(multipartFile.getOriginalFilename());
 			boardFileDTO.setNum(boardDTO.getNum());
-			
-			noticeDAO.setAddFile(boardFileDTO);
-		}//for문 end
+		}
 		return result;
 	}
 

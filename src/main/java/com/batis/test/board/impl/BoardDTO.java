@@ -12,7 +12,8 @@ public class BoardDTO {
 	private Date regdate;
 	private Long hit;
 	
-	private List<BoardFileDTO> boardFileDTOs;
+	//글하나에 boardFile을 여러개 갖고있다 1:N
+ 	private List<BoardFileDTO> boardFileDTOs;
 	
 	public Long getNum() {
 		return num;

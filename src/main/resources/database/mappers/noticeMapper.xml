@@ -36,14 +36,14 @@ FROM NOTICE
 <!-- 매개변수가 BoardDTO이기때문에 ParameterType을 맞춰주어야 한다. -->
 <!-- ParameterType을 NoticeDTO를 넣으려면 BoardDTO가 형변환해야함 -->
 <select id="getDetail" parameterType="BoardDTO" resultMap="fileResult">
-SELECT N.*,F.FILENUM,F.FILENAME
+SELECT N.*,F.FILENUM,F.FILENAME,F.ORINAME
 FROM NOTICE N
 	LEFT JOIN
 	NOTICEFILE F
 	ON N.NUM =F.NUM
 WHERE N.NUM =#{num}
 </select>
-<resultMap type="BoardDTO" id="fileResult">
+<resultMap type="NoticeDTO" id="fileResult">
 	<id column="NUM" property="num"/>
 	<result column="TITLE" property="title"/>
 	<result column="CONTENTS" property="contents"/>
@@ -53,9 +53,8 @@ WHERE N.NUM =#{num}
 	<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
 		<id column="FILENUM" property="fileNum"/>
 		<result column="FILENAME" property="fileName"/>
+		<result column="ORINAME" property="oriName"/>
 	</collection>
-	
-	
 </resultMap>
 
 <insert id="setAdd" parameterType="BoardDTO">

@@ -55,7 +55,10 @@
 						<c:forEach items="${detail.boardFileDTOs}" var="file">
 						<!-- <tr> -->
 							<td>
-								<img class="imgName" src="../resources/upload/${board}/${file.fileName}">
+								<p>
+								<a href="../resources/upload/${board}/${file.fileName}">${file.oriName}</a>
+								</p>	
+								<%-- <img class="imgName" src="../resources/upload/${board}/${file.fileName}"> --%>
 							</td>
 						<!-- </tr> -->
 						</c:forEach>

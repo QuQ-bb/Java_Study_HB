@@ -56,7 +56,7 @@ public class QnaService implements BoardService{
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO,MultipartFile [] files) throws Exception {
+	public int setAdd(BoardDTO boardDTO,ServletContext servletContext,MultipartFile [] files) throws Exception {
 		int result = qnaDAO.setAdd(boardDTO);
 		
 		String realPath = servletContext.getRealPath("resources/upload/qna");

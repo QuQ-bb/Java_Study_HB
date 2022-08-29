@@ -77,7 +77,7 @@ public class NoticeController {
 	@RequestMapping(value="add.ms" ,method = RequestMethod.POST)
 	public ModelAndView setAdd(BoardDTO boardDTO,HttpSession session, MultipartFile [] files)throws Exception{	//리턴타입이 void면 url이 요쳥 value와 같아진다
 		ModelAndView mv = new ModelAndView();
-		int result = noticeService.setAdd(boardDTO,files);
+		int result = noticeService.setAdd(boardDTO,session.getServletContext(),files);
 		mv.setViewName("redirect:list.ms");
 		session.getAttribute("member");
 		

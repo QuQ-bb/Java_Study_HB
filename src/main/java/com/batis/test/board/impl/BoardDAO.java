@@ -14,6 +14,8 @@ public interface BoardDAO {
 	public BoardDTO getDetail(BoardDTO boardDTO)throws Exception;
 	//글 쓰기
 	public int setAdd(BoardDTO boardDTO)throws Exception;
+	//사진추가
+	public int setAddFile(BoardFileDTO boardFileDTO)throws Exception;
 	//글 수정
 	public int setUpdate(BoardDTO boardDTO)throws Exception;
 	//글 삭제

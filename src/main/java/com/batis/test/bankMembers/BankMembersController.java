@@ -26,7 +26,7 @@ public class BankMembersController {
 		System.out.println("JOIN GET 실행");
 	}
 	@RequestMapping(value="join.ms", method= RequestMethod.POST)
-	public String join(BankMembersDTO bankMembersDTO,MultipartFile photo)throws Exception{
+	public String join(BankMembersDTO bankMembersDTO,MultipartFile photo,HttpSession session)throws Exception{
 //		
 		
 		
@@ -35,7 +35,7 @@ public class BankMembersController {
 		System.out.println("업로드 시 파일명== "+photo.getOriginalFilename());
 		System.out.println("업로드시 파라미터명"+photo.getName());
 		System.out.println("업로드시 파일의 크기"+photo.getSize());
-		bankMembersService.join(bankMembersDTO,photo);
+		bankMembersService.join(bankMembersDTO,photo,session);
 		
 		return "redirect:/";
 	}

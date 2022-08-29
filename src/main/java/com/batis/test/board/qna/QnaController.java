@@ -70,7 +70,7 @@ public class QnaController {
 	}
 	@RequestMapping(value="add.ms",method=RequestMethod.POST)
 	public String setAdd(BoardDTO boardDTO,HttpSession session,MultipartFile[] files)throws Exception{
-		int result = qnaService.setAdd(boardDTO,files);
+		int result = qnaService.setAdd(boardDTO,session.getServletContext(),files);
 		session.getAttribute("member");
 		
 		return "redirect:list.ms";
