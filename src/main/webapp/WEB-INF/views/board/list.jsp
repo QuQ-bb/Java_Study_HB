@@ -19,17 +19,17 @@
 				  <div class="col-12">
 				    <label class="visually-hidden" for="kind">Preference</label>
 				    <select class="form-select" name="kind" id="kind">
-				      <option selected>Choose...</option>
-				      <option value="contents">CONTENTS</option>
-				      <option value="title">TITLE</option>
-				      <option value="writer">WRITER</option>
+				      <option >Choose...</option>
+				      <option class="kinds" value="contents">CONTENTS</option>
+				      <option class="kinds" value="title">TITLE</option>
+				      <option class="kinds" value="writer">WRITER</option>
 				    </select>
 				  </div>
 				  
 				   <div class="col-12">
 				    <label class="visually-hidden" for="search">검색어</label>
 				    <div class="input-group">
-				      <input type="text" name="search" class="form-control" id="search" placeholder="SEARCH">
+				      <input type="text" name="search" value="${param.search}" class="form-control" id="search" placeholder="SEARCH">
 				    </div>
 				  </div>
 				
@@ -101,6 +101,34 @@
 
 	
 <c:import url="../template/footer.jsp"></c:import>		
+<script src="/resources/js/board.js"></script>
+ <script>
+	const kinds = document.getElementsByClassName("kinds");
+	const kind = document.getElementById("kind");
+	let k = '${param.kind}'	//title, writer, contents
+	//파라미터값과 옵션값을 비교해서 같다면 true
+	// console.log(k);
+	// alert(k);
+	
+	for(let i=0; i<kinds.length; i++){
+		if(kinds[i].value == k){
+			console.log(kinds[i].value);
+			kinds[i].selected = true;
+		}
+	}
+	
+</script> 
+<!-- <script>
+	const kinds = document.getElementsByClassName("kinds")
+	let k = '${param.kind}'//title, writer, contents 등의 값이 들어갈 수 있음
+	for(let i=0; i<kinds.length;i++){
+	   if(kinds[i].value == k){
+		  kinds[i].selected = true
+		 
+	   }
+	}
+ </script> -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>		
 </body>
 </html>
