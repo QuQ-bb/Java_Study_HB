@@ -35,6 +35,7 @@ function loginCheck(){
             pw_check.innerHTML='PW를 입력해주세요';
             pw.focus();
         }
+        form.submit();
         
     })
 }

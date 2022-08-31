@@ -16,27 +16,49 @@
 		<div class="row">
 		<h3>JOIN PAGE</h3>
 
-	<form action="join.ms" method="post" enctype="multipart/form-data">
+	<form action="join.ms" method="post" id="joinfrm" enctype="multipart/form-data">
 		<table class="table table-hover" border="1">
 			<tr>
 				<th>USERNAME</th>
-				<td><input type="text" class="form-control" name="userName" placeholder="username을 적어주세요"></td>
+				<td>
+					<input type="text" class="form-control" name="userName" id="userName" placeholder="username을 적어주세요">
+					<div id="user_check"></div>
+				</td>
 			</tr>
 			<tr>
 				 <th>PASSWORD</th>
-				<td><input type="password"  class="form-control"name="password" placeholder="password를 입력해주세요"></td>
+				<td>
+					<input type="password"  class="form-control"name="password" id="pass" placeholder="password를 입력해주세요">
+					<div id="pass_check"></div>
+				</td>
 			</tr>
 			<tr>
+				<th>RE PASSWORD</th>
+			   <td>
+				   <input type="password"  class="form-control"name="password2" id="pass2" placeholder="re password를 입력해주세요">
+				   <div id="pass2_check"></div>
+			   </td>
+		   </tr>
+			<tr>
 				  <th>NAME</th>
-				<td><input type="text" class="form-control" name="name" placeholder="name을 입력해주세요"></td>
+				<td>
+					<input type="text" class="form-control" name="name" id="name" placeholder="name을 입력해주세요">
+					<div id="name_check"></div>
+				</td>
 			</tr>
 			<tr>
 				  <th>EMAIL</th>
-				<td><input type="email" class="form-control" name="email" placeholder="email을 입력해주세요."></td>
+				<td>
+					<input type="email" required class="form-control" name="email" id="email" placeholder="email을 입력해주세요.">
+					<div id="email_check"></div>
+				</td>
 			</tr>
 			<tr>
 				  <th>PHONE</th>
-				<td><input type="text" class="form-control" name="phone" placeholder="phone번호를 입력해주세요"></td>
+				<td>
+					<input type="text" class="form-control" name="phone" id="phone" placeholder="phone번호를 입력해주세요">
+					<div id="phone_check"></div>
+				</td>
 			</tr>
 			<tr>
 				  <th>FILE</th>
@@ -44,7 +66,8 @@
 			</tr>
 		</table>
 			<a href="/">Back</a>
-			<br><input type="submit" value="JOIN">
+			<!-- <br><input type="submit" value="JOIN">  -->
+			<button type="button" id="btn">JOIN</button>
 	</form>
 		</div>
 	</section>
@@ -52,6 +75,8 @@
 	
 
 <c:import url="../template/footer.jsp"></c:import>	
+
+<script src="/resources/js/join.js"></script>
 	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
