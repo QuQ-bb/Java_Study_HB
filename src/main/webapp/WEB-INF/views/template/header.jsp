@@ -24,7 +24,7 @@
            		</c:when>
            		<c:otherwise>
             <a class="nav-link active" href="/bankmembers/login.ms">로그인</a>
-            <a class="nav-link active" href="/bankmembers/join.ms">회원가입</a>
+            <a class="nav-link active" href="/bankmembers/agree.ms">회원가입</a>
            	   </c:otherwise>
             </c:choose>
             

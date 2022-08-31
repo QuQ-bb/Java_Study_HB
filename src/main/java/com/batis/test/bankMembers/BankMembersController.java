@@ -39,6 +39,12 @@ public class BankMembersController {
 		
 		return "redirect:/";
 	}
+	//약관 동의
+	@RequestMapping(value="/agree.ms", method= RequestMethod.GET)
+	public String agree()throws Exception{
+		System.out.println("약관동의 실행");
+		return "bankmembers/agree";
+	}
 	//로그인
 	@RequestMapping(value="login.ms",method=RequestMethod.GET)
 	public void login()throws Exception{
