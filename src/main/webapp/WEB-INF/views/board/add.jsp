@@ -25,46 +25,45 @@
 			<h3>${board} ADD PAGE</h3>
 			<form action="add.ms" method="post" enctype="Multipart/form-data">
 				<input type="hidden" name="writer" value="${member.userName}">
-				<table border="1">
-				<tr>
-				<div>
-					<th>TITLE</th>
-					<td>	
+					<div>
 						<input type="text" name="title" placeholder="제목을 입력해주세요.">
-					</td>
-				</div>
-				</tr>
-				<div>	
-					<th>CONTENTS</th>
-					<td>
-						<textarea rows="10" cols="25" id ="contents" name="contents"></textarea>
-					</td>		
-				</div>
-				<tr>
-				<div>	
-					<th>FILE</th>
-					<td>
-						<input type="file" name="files">
-					</td>		
-				</div>
-				</tr>
-				<tr>
-				<div>	
-					<th>FILE</th>
-					<td>
-						<input type="file" name="files">
-					</td>		
-				</div>
-				</tr>
-				<tr>
-				<div>	
-					<th>FILE</th>
-					<td>
-						<input type="file" name="files">
-					</td>		
-				</div>
-				</tr>
-				</table>
+					</div>
+				
+					<div>
+					<textarea rows="10" cols="25" id ="contents" name="contents"></textarea>
+					</div>
+				      <!-- <tr>
+						<div>   
+							<th>FILE</th>
+								<td>
+									<input type="file" name="files">
+								</td>      
+						</div>
+					  </tr>
+						<tr>
+							<div>   
+							<th>FILE</th>
+							<td>
+								<input type="file" name="files">
+							</td>      
+							</div>
+						</tr>
+
+						<tr>
+							<div>   
+							<th>FILE</th>
+							<td>
+								<input type="file" name="files">
+							</td>      
+						</div>
+         			   </tr>  -->
+						
+					   <div id="addFiles">
+						   <button type="button" id="fileAdd" class="btn btn-danger">파일추가</button>
+					  </div>
+						
+					</table>
+
 				<input type="submit" value="ADD">
 				<a href="/">Back</a>
 			</form>
@@ -79,6 +78,7 @@
 <script type="text/javascript">
 	$("#contents").summernote();
 </script>
+<script src="/resources/js/add.js"></script>
 
 </body>
 </html>
