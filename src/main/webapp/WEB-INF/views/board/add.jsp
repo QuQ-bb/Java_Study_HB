@@ -59,7 +59,8 @@
          			   </tr>  -->
 						
 					   <div id="addFiles">
-						   <button type="button" id="fileAdd" class="btn btn-danger">파일추가</button>
+						   <button type="button" id="fileAdd" class="btn btn-danger del">파일추가</button>
+						   <!-- <button type="button" class="del">삭제</button> -->
 					  </div>
 						
 					</table>
