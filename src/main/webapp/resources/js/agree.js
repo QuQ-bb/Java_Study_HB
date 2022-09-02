@@ -1,8 +1,21 @@
-const all = document.getElementById("all");
-const agrees = document.getElementsByClassName("agrees");
+// const all = document.getElementById("all");
+const all = document.querySelector("#all"); //#id명
+// const agrees = document.getElementsByClassName("agrees");
+const agrees =document.querySelectorAll(".agrees"); //실제 배열 .클래스명
 const btn = document.getElementById("btn");
 const frm = document.getElementById("frm");
 const req = document.getElementsByClassName("req");
+
+//foreach는 유사배열
+// console.log("foreach")
+// agrees.foreach(function(v,i,ar){
+//    console.log(v);
+// })
+
+    agrees.forEach(function(v,i,ar){
+        console.log(v)
+    });
+
 
 all.addEventListener("click",function(){
     console.log(all.checked);
@@ -35,6 +48,7 @@ for(let i=0; i<agrees.length; i++){
 //     }
 // })
 
+//필수 약관만 선택해서 동의
 btn.addEventListener("click",function(){
     let no = true;
     for(let i=0; i<req.length; i++){
