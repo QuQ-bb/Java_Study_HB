@@ -49,6 +49,7 @@ fileAdd.addEventListener("click",function(){
 
     div.appendChild(button);
     addFiles.append(div);
+
     
     
     console.log(count);
@@ -64,11 +65,17 @@ addFiles.addEventListener("click",function(){
         
         const id1 = document.getElementById("file"+event.target.title);
 
-        addFiles.removeChild(id1)
-        // for(d of del){
-        //     addFiles.removeChild(d);
-        // }
+       addFiles.removeChild(id1)
+        count--;
     }
 })
+
+//강사님 코드
+// addFiles.addEventListener("click",function(){
+//     let button = event.target;
+//     if(button.classList[0]=='del'){
+//         document.getElementById("file"+button.title).remove();    //따로 해줄필요없이 바로 삭제가능
+//     }
+// })
 
 
