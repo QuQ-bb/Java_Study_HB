@@ -78,8 +78,19 @@ public class NoticeController {
 	public ModelAndView setAdd(BoardDTO boardDTO,HttpSession session, MultipartFile [] files)throws Exception{	//리턴타입이 void면 url이 요쳥 value와 같아진다
 		ModelAndView mv = new ModelAndView();
 		int result = noticeService.setAdd(boardDTO,session.getServletContext(),files);
-		mv.setViewName("redirect:list.ms");
+//		mv.setViewName("redirect:list.ms");
 		session.getAttribute("member");
+		
+	
+		String message = "글쓰기 실패";
+		if(boardDTO != null) {
+			message ="글쓰기 성공";
+		}
+		mv.addObject("result", result);
+		mv.addObject("message", message);
+		mv.addObject("url", "./list.ms");
+		mv.setViewName("common/result");
+		
 		
 		return mv;
 	}

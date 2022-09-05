@@ -51,12 +51,26 @@ public class BankMembersController {
 		System.out.println("LOGIN GET 실행");
 	}
 	@RequestMapping(value="login.ms",method=RequestMethod.POST)
-	public String login(BankMembersDTO bankMembersDTO,HttpSession session)throws Exception{
+	public ModelAndView login(BankMembersDTO bankMembersDTO,HttpSession session)throws Exception{
+		ModelAndView mv = new ModelAndView();
 		System.out.println("LOGIN POST 실행");
 		bankMembersDTO =  bankMembersService.login(bankMembersDTO);
 		session.setAttribute("member", bankMembersDTO);
 		
-		return "redirect:/";
+		int result = 0;
+		String message = "로그인 실패";
+		String url = "./login.ms";
+		if(bankMembersDTO != null) {
+			result = 1;
+			message ="로그인 성공";
+			url="../";
+		}
+		mv.addObject("result", result);
+		mv.addObject("message", message);
+		mv.addObject("url", url);
+		mv.setViewName("common/result");
+		
+		return mv;
 	}
 	//ID찾기
 	@RequestMapping(value="searchID.ms" ,method=RequestMethod.GET)
