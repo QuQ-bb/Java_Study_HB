@@ -17,6 +17,15 @@ public class BankBookController {
 	@Autowired
 	BankBookService service;
 	
+	//Comment
+//	@PostMapping("commentAdd")
+	@RequestMapping(value="commentAdd",method=RequestMethod.POST)
+	public void setCommentAdd(BankBookCommentDTO bankBookCommentDTO)throws Exception {
+		int result = service.setCommentAdd(bankBookCommentDTO);
+	}
+	
+	//-------------------------------------------------------------------
+	
 	@RequestMapping(value = "list.ms", method = RequestMethod.GET)
 	public void list(HttpServletRequest request) {
 		System.out.println("list Controller");
