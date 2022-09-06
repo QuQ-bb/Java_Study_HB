@@ -9,11 +9,13 @@
 		<typeAlias type="com.batis.test.bankMembers.BankMembersFileDTO" alias="BankMembersFileDTO"/>
 		<typeAlias type="com.batis.test.bankAccount.BankAccountDTO" alias="BankAccountDTO"/>
 		<typeAlias type="com.batis.test.bankBook.BankBookDTO" alias="BankBookDTO"/>
+		<typeAlias type="com.batis.test.bankBook.BankBookCommentDTO" alias="BankBookCommentDTO"/>
 		<typeAlias type="com.batis.test.board.impl.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.batis.test.board.impl.BoardFileDTO" alias="BoardFileDTO"/>
 		<typeAlias type="com.batis.test.board.notice.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.batis.test.board.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="com.batis.test.util.Pager" alias="Pager"/>
+		<typeAlias type="com.batis.test.util.CommentPager" alias="CommentPager"/>
 		<typeAlias type="java.lang.String" alias="Sting"/>	
 		<typeAlias type="java.lang.Long" alias="Long"/>	
 		<typeAlias type="java.util.List" alias="List"/>	

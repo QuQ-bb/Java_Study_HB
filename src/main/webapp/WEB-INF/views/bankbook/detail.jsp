@@ -37,13 +37,37 @@
 			</tr>
 		</tbody>
 	</table>
+
+		<!-- Comment -->
+		<div class="row">
+			<div class="mb-3">
+				<label for="writer" class="form-label">Email address</label>
+				<input type="text" class="form-control" id="writer" placeholder="Writer..">
+			</div>
+			<div class="mb-3">
+				<label for="contents" class="form-label">WRITE CONTENTS</label>
+				<textarea class="form-control" id="contents" rows="3"></textarea>
+			</div>
+			<div class="mb-3">
+				<button type="button" id="btn" data-book-num="${bankBook.bookNum}">댓글 작성</button>
+			</div>
+
+			<!--Comment List-->
+			<div id="commentList">
+				
+
+			</div>
+
+		</div>
+		<!-- Comment -->
 	<a href="./delete.ms?bookNum=${bankBook.bookNum }#">상품삭제</a>
 		</div>
 	</section>
 
 	
-
+	
 <c:import url="../template/footer.jsp"></c:import>	
+	<script src="/resources/js/bankbookComment.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>
