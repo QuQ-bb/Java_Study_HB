@@ -6,13 +6,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.batis.test.bankMembers.BankMembersDTO;
 import com.batis.test.board.impl.BoardDTO;
 import com.batis.test.util.Pager;
 
@@ -70,8 +70,13 @@ public class NoticeController {
 	//글 작성
 	//확장자를 붙여주고 리턴 타입을 void로 사용하면 경로를 제대로 가지 못 할 수 있다. 그렇기 때문에 String으로 return 시켜주기!!
 	@RequestMapping(value="add.ms", method = RequestMethod.GET)
-	public String setAdd(Model model)throws Exception{
-		return "board/add";
+	public String setAdd(HttpSession session)throws Exception{
+		BankMembersDTO bankMembersDTO = (BankMembersDTO)session.getAttribute("member");
+		if(bankMembersDTO != null) {
+			return "board/add";
+		}else {
+			return "redirect:../login.ms";
+		}
 	}
 	
 	@RequestMapping(value="add.ms" ,method = RequestMethod.POST)

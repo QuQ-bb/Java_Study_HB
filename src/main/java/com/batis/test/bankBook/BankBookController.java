@@ -1,7 +1,9 @@
 package com.batis.test.bankBook;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -45,6 +47,7 @@ public class BankBookController {
 		
 		return jsonResult;
 	}
+	//---------------------------------------------------------------------------------------------
 //	@RequestMapping(value="commentList", method= RequestMethod.GET)
 //	public ModelAndView getCommentList(CommentPager commentPager)throws Exception{
 //		ModelAndView mv = new ModelAndView();
@@ -60,7 +63,7 @@ public class BankBookController {
 	
 	@RequestMapping(value="commentList", method= RequestMethod.GET)
 	@ResponseBody
-	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager)throws Exception{
+	public Map<String, Object> getCommentList(CommentPager commentPager)throws Exception{
 		List<BankBookCommentDTO> al = service.getCommentList(commentPager);
 			System.out.println("CommentList");
 			System.out.println(al.size());
@@ -70,7 +73,26 @@ public class BankBookController {
 			// num=1 =={"num":1, "bookNum":123, "writer":"홍길이"}
 			//[{"num":1, "bookNum":123, "writer":"홍길이"},{"num":1, "bookNum":123, "writer":"홍길이"},{"num":1, "bookNum":123, "writer":"홍길이"}...]
 			
-			return al;
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("list", al);
+			map.put("pager", commentPager);
+			
+			return map;
+	}
+	@RequestMapping(value="commentDelete" ,method=RequestMethod.POST)
+	@ResponseBody
+	public int setCommentDelete(BankBookCommentDTO bankBookCommentDTO)throws Exception{
+		int result = service.setCommentDelete(bankBookCommentDTO);
+		
+		return result;
+	}
+	@RequestMapping(value="commentUpdate",method = RequestMethod.POST)
+	@ResponseBody
+	public int setCommentUpdate(BankBookCommentDTO bankBookCommentDTO)throws Exception{
+		int result =service.setCommentUpdate(bankBookCommentDTO);
+		System.out.println("num=="+bankBookCommentDTO.getNum());
+		System.out.println("contents== "+bankBookCommentDTO.getContents());
+		return result;
 	}
 	//-------------------------------------------------------------------
 	

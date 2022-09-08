@@ -53,12 +53,48 @@
 			</div>
 
 			<!--Comment List-->
-			<div id="commentList">
-				
+			<div >
+				<table class="table table-hover" id="commentList">
 
+				</table>
 			</div>
-
+			<button class="btn btn-danger disabled" id="more">더보기</button>
 		</div>
+
+		<!----------------------------Modal----------------------------->
+		<div>
+				<!--Modal Button-->
+			<button type="button" style="display: none;" class="btn btn-primary" id="up" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">댓글수정이란말이야</button>
+					<!--Modal-->
+				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">UPDATE</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<input type="hidden" id="num">
+						<div class="mb-3">
+							<label for="recipient-name" class="col-form-label">Writer:</label>
+							<input type="text" class="form-control" id="updateWriter">
+						</div>
+						<div class="mb-3">
+							<label for="message-text" class="col-form-label">Contents:</label>
+							<textarea class="form-control" id="updateContents"></textarea>
+						</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" id="send" data-bs-dismiss="modal">Send message</button>
+					</div>
+					</div>
+				</div>
+				</div>
+		</div>
+
 		<!-- Comment -->
 	<a href="./delete.ms?bookNum=${bankBook.bookNum }#">상품삭제</a>
 		</div>
