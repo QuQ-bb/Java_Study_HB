@@ -75,7 +75,7 @@ public class NoticeController {
 		if(bankMembersDTO != null) {
 			return "board/add";
 		}else {
-			return "redirect:../login.ms";
+			return "redirect:../bankmembers/login.ms";
 		}
 	}
 	

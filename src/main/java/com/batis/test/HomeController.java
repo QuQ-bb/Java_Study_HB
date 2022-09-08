@@ -32,6 +32,7 @@ public class HomeController {
 //		
 //		model.addAttribute("serverTime", formattedDate );
 		Thread.sleep(10000);
+		System.out.println("hmoe 실행");
 		
 		return "index";
 	}
