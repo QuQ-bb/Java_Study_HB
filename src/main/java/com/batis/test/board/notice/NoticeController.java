@@ -43,6 +43,10 @@ public class NoticeController {
 		mv.addObject("list", al);
 		mv.addObject("pager", pager);
 		mv.setViewName("board/list");
+		
+		if(al.size() != 0) {
+			throw new Exception();
+		}
 		return mv;
 		
 	}
@@ -125,5 +129,5 @@ public class NoticeController {
 		return "redirect:list.ms";
 		
 	}
-
+	
 }
