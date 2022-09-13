@@ -51,8 +51,15 @@
 					<td>${my.accountDate}</td>
 					</tr>
 				</c:forEach> 
+			<hr>
 		</table>
 		
+				<c:forEach items="${member.roleDTOs}" var ="role">
+					${role.roleNum},${role.roleName}<br>
+				</c:forEach>
+				
+				<h1>당신은 ${member.roleDTOs.get(0).roleName}</h1>
+				<h1>당신은 ${member.roleDTOs["0"].roleName}</h1>
 		
 		</div>
 		

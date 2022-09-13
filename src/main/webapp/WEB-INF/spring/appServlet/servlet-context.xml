@@ -22,29 +22,41 @@
 	</beans:bean>
 	
 	<!-- Interceptor 설정 -->
-	<beans:bean class="com.batis.test.interceptor.TestInterceptor" id="testInterceptor"></beans:bean>
-	<beans:bean class="com.batis.test.interceptor.WriterCheckInterceptor" id="WriterCheckInterceptor"></beans:bean>
-	
+<!-- 	<beans:bean class="com.batis.test.interceptor.TestInterceptor" id="testInterceptor"></beans:bean> 
+	<beans:bean class="com.batis.test.interceptor.WriterCheckInterceptor" id="WriterCheckInterceptor"></beans:bean> -->
+		<beans:bean class="com.batis.test.interceptor.MemberInterceptor" id="MemberInterceptor"></beans:bean>
+		<beans:bean class="com.batis.test.interceptor.AdminCheckInterceptor" id="AdminCheckInterceptor"></beans:bean>
 	
 	<!-- URL - Interceptor 맵핑 -->
 	<!-- Interceptor 쓴 순서대로 Interceptor가 실행된다. -->
 	<interceptors>
-		<interceptor>
+		<!-- <interceptor>
 			<mapping path="/qna/*"/>
 			<mapping path="/bankmembers/mypage.ms"/>
 			<exclude-mapping path="/qna/list.ms"/>
-			<!-- beans:ref>사용하지않고 바로 선언해주기 안에 선언해주었기때문에 이곳에서밖에 사용 불가 -->
+			beans:ref>사용하지않고 바로 선언해주기 안에 선언해주었기때문에 이곳에서밖에 사용 불가
 		<beans:bean class="com.batis.test.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
 		</interceptor>
 		<interceptor>
-			<!-- URL 경로 -->
+			URL 경로
 			<mapping path="/**"/>
 			<beans:ref bean="testInterceptor"/>
-		</interceptor>
+		</interceptor> -->
+		
 		<interceptor>
-			<mapping path="/qna/update.ms"/>
-			<mapping path="/notice/update.ms"/>
-			<beans:ref bean="WriterCheckInterceptor"/>
+			<mapping path="/notice/**"/>
+			<mapping path="/qna/**"/>
+			<exclude-mapping path="/notice/list.ms"/>
+			<exclude-mapping path="/notice/detail.ms"/>
+			<exclude-mapping path="/qna/list.ms"/>
+			<beans:ref bean="MemberInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/notice/**"/>
+			<exclude-mapping path="/notice/list.ms"/>
+			<exclude-mapping path="/notice/detail.ms"/>
+			<beans:ref bean="AdminCheckInterceptor"/>
 		</interceptor>
 	</interceptors>
 	

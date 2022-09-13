@@ -21,6 +21,12 @@ public class BankMembersService {
 //	@Autowired
 //	private BankAccountDAO bankAccountDAO;
 	
+	//id중복체크
+	public Long getIdCheck(BankMembersDTO bankMembersDTO)throws Exception{
+		System.out.println("안녕하세요 중복체크 서비스입니다.");
+		return bankMembersDAO.getIdCheck(bankMembersDTO);
+	}
+	
 	//회원가입
 	public int join(BankMembersDTO bankMembersDTO,MultipartFile photo,HttpSession session)throws Exception{
 		int result = bankMembersDAO.join(bankMembersDTO);

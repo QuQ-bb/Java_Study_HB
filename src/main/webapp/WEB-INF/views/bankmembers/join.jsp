@@ -23,6 +23,7 @@
 				<td>
 					<input type="text" class="form-control" name="userName" id="userName" placeholder="username을 적어주세요">
 					<div id="user_check"></div>
+					<button type="button" id="idCheckBtn">중복검사</button>
 				</td>
 			</tr>
 			<tr>

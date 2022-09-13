@@ -12,11 +12,17 @@ public class BankMembersDAOTest extends MyAbstracttest {
 	private BankMembersDAO bankMembersDAO;
 
 	@Test
-	public void mypageTest()throws Exception {
+//	public void mypageTest()throws Exception {
+//		BankMembersDTO bankMembersDTO = new BankMembersDTO();
+//		bankMembersDTO.setUserName("ID1");
+//		bankMembersDTO = bankMembersDAO.mypage(bankMembersDTO);
+//		System.out.println(bankMembersDTO.getEmail());
+//	}
+	
+	public void idCheckTest()throws Exception{
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
 		bankMembersDTO.setUserName("ID1");
-		bankMembersDTO = bankMembersDAO.mypage(bankMembersDTO);
-		System.out.println(bankMembersDTO.getEmail());
+		Long result = bankMembersDAO.getIdCheck(bankMembersDTO);
 	}
 
 }

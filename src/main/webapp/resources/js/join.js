@@ -14,7 +14,7 @@ const email1_check = document.getElementById("email_check")
 const phone_check = document.getElementById("phone_check");
 const regpass = /^[A-Za-z0-9!@]{6,}$/;
 const regemail = /^[a-zA-Z0-9]([-_\.]?[a-zA-Z0-9])*@[a-zA-Z0-9]([-_\.]?[a-zA-Z0-9])*\.[a-zA-Z]{2,3}$/;
-
+const idCheckBtn = document.querySelector("#idCheckBtn");
 
 btn.addEventListener("click",function(){
     if(userName.value==""){
@@ -54,6 +54,7 @@ userName.addEventListener("blur",function(){
     }else{
         user_check.innerHTML =' ';
     } 
+    
 });
 
 pass.addEventListener("keyup",function(){
@@ -124,5 +125,33 @@ phone.addEventListener("blur",function(){
     }
 })
 
+
+idCheckBtn.addEventListener("click",function(){
+    console.log("쀼쀼?")
+     //1.XMLHttpRequest 생성
+     const xhttp = new XMLHttpRequest();
+     //2.Method,url 요청정보
+     xhttp.open("POST","./IdCheck");
+     //3.Header 정보넘김
+     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+     //4.요청실행
+     xhttp.send("userName="+userName.value);
+     //5.응답처리
+     xhttp.onreadystatechange=function(){
+         if(xhttp.readyState==4 && xhttp.status==200){
+             let result = xhttp.responseText.trim();
+             console.log("넘어온거",xhttp.responseText);
+ 
+             if(result == 1){
+                 user_check.innerHTML="이미 사용중인 아이디입니다.";
+                 console.log("야야 똑바로해")
+                 userName.focus();
+             }else{
+                 user_check.innerHTML="사용 가능한 아이디입니다.";
+                 
+             }
+         }
+     }
+})
 
 

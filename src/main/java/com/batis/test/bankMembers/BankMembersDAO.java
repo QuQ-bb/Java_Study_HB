@@ -13,6 +13,13 @@ public class BankMembersDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.batis.test.bankMembers.BankMembersDAO.";
 	
+	//id중복 check
+	public Long getIdCheck(BankMembersDTO bankMembersDTO)throws Exception{
+		System.out.println("안녕하세요 중복체크 dao입니다.");
+		return sqlSession.selectOne(NAMESPACE+"getIdCheck",bankMembersDTO);
+	}
+	
+	//회원가입 이미지 추가
 	public int setAddFile(BankMembersFileDTO bankMembersFileDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"setAddFile",bankMembersFileDTO);
 	}

@@ -4,6 +4,13 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 <mapper namespace="com.batis.test.bankMembers.BankMembersDAO">
+
+<select id="getIdCheck" parameterType="BankMembersDTO" resultType="Long" >
+SELECT COUNT(*) 
+FROM BANKMEMBERS
+WHERE USERNAME=#{userName}
+</select>
+
 <insert id="setAddFile" parameterType="BankMembersFileDTO">
 INSERT INTO MEMBERFILE
 VALUES(
@@ -24,11 +31,29 @@ VALUES(
 	#{phone}
 )
 </insert>
-<select id="login" parameterType="BankMembersDTO" resultType="BankMembersDTO">
-SELECT * 
-FROM BANKMEMBERS
-WHERE USERNAME=#{userName} and PASSWORD=#{password}
+<select id="login" parameterType="BankMembersDTO" resultMap="loginResult">
+SELECT M.USERNAME,M.NAME,R.ROLENUM,R.ROLENAME
+FROM BANKMEMBERS M
+      JOIN
+     MEMBER_ROLE MR
+     ON M.USERNAME = MR.USERNAME
+      JOIN
+     ROLE R
+     ON MR.ROLENUM = R.ROLENUM
+WHERE M.USERNAME= #{userName} AND M.PASSWORD=#{password}
+ORDER BY R.ROLENUM ASC
+
 </select>
+
+<resultMap type="BankMembersDTO" id="loginResult">
+	<id column="USERNAME" property="userName"/>
+	<result column="NAME" property="name"/>
+	<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
+		<id column="ROLENUM" property="roleNum"/>
+		<result column="ROLENAME" property="roleName"/>
+	</collection>
+</resultMap>
+
 <select id="searchID" parameterType="String" resultType="BankMembersDTO">
 SELECT *
 FROM BANKMEMBERS

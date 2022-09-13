@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,6 +20,16 @@ public class BankMembersController {
 	private BankMembersService bankMembersService;
 //	@Autowired
 //	private BankAccountService bankAccountService;
+	
+	//id중복check
+	@RequestMapping(value="IdCheck" ,method=RequestMethod.POST)
+	@ResponseBody
+	public Long getIdCheck(BankMembersDTO bankMembersDTO)throws Exception{
+		System.out.println("안녕하세요 중복체크 controller입니다.");
+		Long result = bankMembersService.getIdCheck(bankMembersDTO);
+		System.out.println("중복result =="+result);
+		return result;
+	}
 	
 	//회원가입
 	@RequestMapping(value="join.ms",method=RequestMethod.GET)

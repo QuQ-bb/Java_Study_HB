@@ -7,6 +7,7 @@
 	<typeAliases>
 		<typeAlias type="com.batis.test.bankMembers.BankMembersDTO" alias="BankMembersDTO"/>
 		<typeAlias type="com.batis.test.bankMembers.BankMembersFileDTO" alias="BankMembersFileDTO"/>
+		<typeAlias type="com.batis.test.bankMembers.RoleDTO" alias="RoleDTO"/>
 		<typeAlias type="com.batis.test.bankAccount.BankAccountDTO" alias="BankAccountDTO"/>
 		<typeAlias type="com.batis.test.bankBook.BankBookDTO" alias="BankBookDTO"/>
 		<typeAlias type="com.batis.test.bankBook.BankBookCommentDTO" alias="BankBookCommentDTO"/>

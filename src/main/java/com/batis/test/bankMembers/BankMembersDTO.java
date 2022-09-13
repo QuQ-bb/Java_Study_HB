@@ -16,6 +16,8 @@ public class BankMembersDTO {
 	private List<BankAccountDTO> bankAccountDTOs;
 	//파일
 	private BankMembersFileDTO bankMembersFileDTO;
+	//역할
+	private List<RoleDTO> roleDTOs;
 	
 	
 	public String getUserName() {
@@ -60,6 +62,12 @@ public class BankMembersDTO {
 	}
 	public void setBankMembersFileDTO(BankMembersFileDTO bankMembersFileDTO) {
 		this.bankMembersFileDTO = bankMembersFileDTO;
+	}
+	public List<RoleDTO> getRoleDTOs() {
+		return roleDTOs;
+	}
+	public void setRoleDTOs(List<RoleDTO> roleDTOs) {
+		this.roleDTOs = roleDTOs;
 	}
 	
 
